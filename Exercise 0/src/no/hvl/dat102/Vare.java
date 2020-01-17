@@ -11,19 +11,13 @@ public class Vare {
 
 	public Vare() {
 
-		this.varenr = 0;
-		this.navn = null;
-		this.pris = 0.0;
-		this.antall = 0;
+		this(0, "", 0.0, 0);
 
 	}
 
 	public Vare(int varenr) {
 
-		this.varenr = varenr;
-		this.navn = null;
-		this.pris = 0.0;
-		this.antall = 0;
+		this(varenr, "", 0.0, 0);
 
 	}
 
