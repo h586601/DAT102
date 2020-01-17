@@ -52,7 +52,7 @@ public class Butikk {
 			Vare v1 = new Vare(varenr);
 			v1.lesVare();
 			varer[pos] = v1;
-			antallTyper++;
+			antallTyper++; 
 		}
 	}
 	
