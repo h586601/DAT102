@@ -6,13 +6,16 @@ import no.hvl.data102.adt.*;
 
 public class Tekstgrensesnitt {
 
-	//Du kan opprette et Scanner-objekt i lesFilm og ha det åpent hele tiden 
-	//og eventuelt lukke det på slutten i Meny når all lesing er ferdig. 
-	//Lese opplysningene om en film fra tastatur
+	/*
+	 * Create a Scanner object in lesFilm and keep it open Close it in the end
+	 * inside Menu when all reading is done
+	 */
+
+	// Read the information about a movie from keyboard/terminal window
 	public static Film lesFilm() {
-		
+
 		Film nyFilm;
-		
+
 		Scanner leser = new Scanner(System.in);
 		System.out.println("Filmnummer");
 		int filmnr = leser.nextInt();
@@ -27,44 +30,69 @@ public class Tekstgrensesnitt {
 		Sjanger sjang = Sjanger.finnSjanger(leser.nextLine());
 		System.out.println("Filmselskap");
 		String selskap = leser.nextLine();
-		
+
 		nyFilm = new Film(filmnr, prod, tittel, aarstall, sjang, selskap);
-		
+
 		return nyFilm;
 	}
-	
-	//vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
-	public void visFilm(Film film) {
-		//TODO
+
+	// Print out a movie with all information on the screen (remember text for the genre)
+	public static void visFilm(Film film) {
+		String filmInformasjon = "Filmtittel: " + film.getTittel() 
+				+ "\nProdusent: " + film.getProdusent()
+				+ "\nFilmnummeret: " + film.getFilmnr() 
+				+ "\nUtgivelsesår: " + film.getAarstall()
+				+ "\nSjanger: " + film.getSjanger() 
+				+ "\nFilmselskap: "
+				+ film.getFilmselskap();
+		System.out.println(filmInformasjon);
 	}
-	
-	//skrive ut alle filmer med en spesiell delstreng i tittelen
-	public void skrivUtFilmDelstrengITittel(FilmarkivADT filmer, String delstreng) {
+
+	//Print out all movies with a specific string in title
+	public static void skrivUtFilmDelstrengITittel(Filmarkiv filmer, String delstreng) {
+		
 		Film[] filmTab = filmer.sokTittel(delstreng);
+		
+		for(int pos = 0; pos < filmTab.length; pos++) {
+			visFilm(filmTab[pos]);
+			System.out.println();
+		}
+
 	}
-	
-	//skriver ut alle filmer av en produsent/en gruppe
-	public void skrivUtFilmProdusent(FilmarkivADT filmer, String delstreng) {
-		//TODO
+
+	// Print out all the films by one producer 
+	public void skrivUtFilmProdusent(Filmarkiv filmer, String delstreng) {
+
 	}
-	
-	//skrive ut en enkel statistikk som inneholder antall filmer totalt
-	//og hvor mange det er i hver sjanger
-	public void skrivUtStatistikk(FilmarkivADT filmer) {
-		//TODO
+
+	//Print out simple statistics including number of films in total and in every genre
+	public static void skrivUtStatistikk(Filmarkiv filmer) {
+
+		System.out.println("\nStatistikk \nAntall filmer: " + filmer.antall());
+
+		Sjanger[] sjang = Sjanger.values();
+		for (int pos = 0; pos < sjang.length; pos++) {
+			System.out.println(sjang[pos] + ": " + filmer.antallSjanger(Sjanger.values()[pos]));
+		}
+		
+		System.out.println();
 	}
-	
+
 	public static void main(String[] args) {
 
 		Filmarkiv filmarkiv = new Filmarkiv(10);
-		filmarkiv.leggTilFilm(new Film());
-		filmarkiv.leggTilFilm(new Film());
 		Film nyFilm = Tekstgrensesnitt.lesFilm();
 		filmarkiv.leggTilFilm(nyFilm);
+		filmarkiv.leggTilFilm(new Film(1, "Tony Kaye", "American History X", 1998, Sjanger.DRAMA, "New Line Cinema"));
+		filmarkiv.leggTilFilm(new Film(2, "Kaye", "History", 1998, Sjanger.SCIFI, "New Line Cinema"));
+		
 		filmarkiv.skrivUtTitler();
 		
+		Tekstgrensesnitt.skrivUtStatistikk(filmarkiv);
+		
+		visFilm(nyFilm);
+		skrivUtFilmDelstrengITittel(filmarkiv, "History");
+
 	}
 
-	
-	
-}//class
+}

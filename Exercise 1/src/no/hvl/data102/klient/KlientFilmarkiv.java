@@ -6,7 +6,10 @@ import no.hvl.data102.adt.*;
 public class KlientFilmarkiv {
 
 	public static void main(String[] args) {
-		//meny
+		
+		/*
+		 * Menu should be created here
+		 */
 		
 		FilmarkivADT filmer = new Filmarkiv();
 		Meny meny = new Meny(filmer);

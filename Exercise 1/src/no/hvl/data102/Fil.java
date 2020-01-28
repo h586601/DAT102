@@ -11,31 +11,21 @@ import no.hvl.data102.adt.FilmarkivADT;
 
 /**
  * @author frkmj
- * 
+ *  @param filnavn
+ *  @return Referansen til Film-arkivet
+ *  @throws java.io.IOException
  */
-/* Ref: Mughal: Java som første programmeringsspråk
+
+/*  
+ * OBS! In the Menu where for example lesFraFil is being used,
+ * there has to be try-catch 
  * 
- * En tekstfil består av tekstlinjer. En tekstlinje består av en sekvens av 
- * tegn avsluttet med en linejavslutt-streng. Linjeavslutt-strengen er plattformavhengig.
- * 
- * Vi bruker en tegnstrøm koblet til en bytestøm. Bytes blir lest fra byte-innstrømmen
- * og oversatt til Unicode-tegn av tegn-strømmen. Motsatt, Unicode-tegn blir oversatt 
- * til bytes av tegn-utstrømmen og blir skrevet ut av bytestømmen.
- *  
  */
 
 public class Fil {
-/*  
- * OBS! I Menyen der f.eks. lesFrafil brukes, må det være try og catch-blokk.
- * 
- */
+	
 	private static final String SKILLE = "#";
-
-	/**
-	 * @param filnavn
-	 * @return Referansen til Film-arkivet
-	 * @throws java.io.IOException
-	 */
+	
 	public static Filmarkiv lesFraFil(String filnavn)  {
 		Filmarkiv filmarkiv = null;
 			try {
@@ -77,7 +67,7 @@ public class Fil {
 				filmarkiv.leggTilFilm(film);
 			}
 
-			// 4 - Lukk filen
+			// 4 - Close the file
 			innfil.close();
 
 		} catch (FileNotFoundException unntak) {// arver fra IOE.. må stå først

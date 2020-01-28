@@ -12,8 +12,8 @@ public enum Sjanger {
 			}
 		}
 		return sjang;
-	}// metode
+	}
 
-}// class
+}
 
 

@@ -1,5 +1,10 @@
 package no.hvl.data102;
 
+
+/**
+ * Close Scanner within this class
+ */
+
 import no.hvl.data102.adt.*;
 
 public class Meny {

@@ -8,7 +8,7 @@ public class Filmarkiv implements FilmarkivADT {
 	private int antallFilmer;
 	
 	public Filmarkiv() {
-		//laget for å fjerne error i klientfilmarkiv
+		
 	}
 	
 	public Filmarkiv(int ant) {
@@ -27,13 +27,9 @@ public class Filmarkiv implements FilmarkivADT {
 	public void leggTilFilm(Film nyFilm) {
 		
 		if(antallFilmer < filmTab.length) {
-
 			filmTab[antallFilmer] = nyFilm;
-
 			antallFilmer++;
-
 		}
-		
 	}
 
 	@Override
@@ -46,15 +42,12 @@ public class Filmarkiv implements FilmarkivADT {
 			antallFilmer--;
 			filmTab[sok] = filmTab[antallFilmer]; 
 			filmTab[antallFilmer] = null;
-
 			return true;
-
 		}
-
 		return false;
 	}
 	
-	//hjelpemetode
+	//Helper method
 	public int sokNr(int filmNr) {
 
 		for(int i = 0; i < antallFilmer; i++) {
@@ -73,14 +66,14 @@ public class Filmarkiv implements FilmarkivADT {
 		int teller = 0;
 
 		for(int i = 0; i < antallFilmer; i++) {
-
-			if(filmTab[i].getTittel().contains(delstreng)) {
+			if(filmTab[i].getTittel() != null && filmTab[i].getTittel().contains(delstreng)) {
 				tittelTabell[teller] = filmTab[i];
 				teller++;
 			}
 		}
 		return tittelTabell;
 	}
+	
 
 	@Override
 	public Film[] sokProdusent(String delstreng) {
@@ -88,8 +81,8 @@ public class Filmarkiv implements FilmarkivADT {
 		int teller = 0;
 
 		for(int i = 0; i < antallFilmer; i++) {
-
-			if(filmTab[i].getProdusent().contains(delstreng)) {
+			
+			if(filmTab[i].getProdusent() != null && filmTab[i].getProdusent().contains(delstreng)) {
 				produsentTabell[teller] = filmTab[i];
 				teller++;
 			}
