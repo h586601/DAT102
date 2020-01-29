@@ -4,25 +4,25 @@ import no.hvl.data102.*;
 
 public interface FilmarkivADT {
 
-	//returnere en tabell av filmer
+	//Return an array of films
 	Film[] hentFilmTabell();
 	
-	//legger til en ny Film
+	//Add a new movie
 	void leggTilFilm(Film nyFilm);
 	
-	//sletter en Film hvis den fins
+	//Delete a movie if it exists 
 	boolean slettFilm(int filmnr);
 	
-	//søker og henter Filmer med en gitt delstreng
+	//Search and collect movies that include a certain string
 	Film[] sokTittel(String delstreng);
 	
-	//søker og henter produsenter med en gitt delstreng
+	//Search and collect producers that include a certain string/keyword
 	Film[] sokProdusent(String delstreng);
 	
-	//henter antall filmer for en gitt sjanger
+	//Count number of movies within a given genre 
 	int antallSjanger(Sjanger sjanger);
 
-	//returnerer antall filmer
+	//Return number of movies
 	int antall();
 	
 } //interface

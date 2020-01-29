@@ -1,6 +1,8 @@
 package no.hvl.data102;
 
 
+import java.util.Scanner;
+
 /**
  * Close Scanner within this class
  */
@@ -19,6 +21,14 @@ public class Meny {
 	
 	
 	public void start() {
+		System.out.println("Velg det som passer for deg.");
+		System.out.println("1 - Jobbe med eksisterende arkiv?");
+		System.out.println("2 - Opprette nytt arkiv?");
+		Scanner leser = new Scanner(System.in);
+		int valg = Integer.parseInt(leser.nextLine());
+		
+		
+		
 		
 	}
 }

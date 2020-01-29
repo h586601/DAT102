@@ -1,4 +1,4 @@
 3
-3#Quentin Tarantino#Django Unchained#2012#ACTION#The Weinstein Company
+3#Quentin Tarantino#Django Unchained#2012#null#The Weinstein Company
 1#Tony Kaye#American History X#1998#DRAMA#New Line Cinema
 2#Todd Phillips#Joker#2019#DRAMA#Warner Bros.

@@ -49,7 +49,7 @@ public class Tekstgrensesnitt {
 	}
 
 	//Print out all movies with a specific string in title
-	public static void skrivUtFilmDelstrengITittel(Filmarkiv filmer, String delstreng) {
+	public static void skrivUtFilmDelstrengITittel(FilmarkivADT filmer, String delstreng) {
 		
 		System.out.println();
 		System.out.println("----FILMER MED TITTEL: '" + delstreng.toUpperCase() + "'----");
@@ -65,7 +65,7 @@ public class Tekstgrensesnitt {
 	}
 
 	// Print out all the films by one producer 
-	public static void skrivUtFilmProdusent(Filmarkiv filmer, String delstreng) {
+	public static void skrivUtFilmProdusent(FilmarkivADT filmer, String delstreng) {
 		
 		System.out.println();
 		System.out.println("----FILMER PRODUSERT AV: '" + delstreng.toUpperCase() + "'----");
@@ -81,7 +81,7 @@ public class Tekstgrensesnitt {
 	}
 
 	//Print out simple statistics including number of films in total and in every genre
-	public static void skrivUtStatistikk(Filmarkiv filmer) {
+	public static void skrivUtStatistikk(FilmarkivADT filmer) {
 
 		System.out.println("\n----STATISTIKK---- \nAntall filmer: " + filmer.antall());
 
