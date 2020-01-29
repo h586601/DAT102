@@ -51,18 +51,33 @@ public class Tekstgrensesnitt {
 	//Print out all movies with a specific string in title
 	public static void skrivUtFilmDelstrengITittel(Filmarkiv filmer, String delstreng) {
 		
+		System.out.println();
+		System.out.println("----FILMER MED TITTEL: '" + delstreng.toUpperCase() + "'----");
+		
 		Film[] filmTab = filmer.sokTittel(delstreng);
 		
 		for(int pos = 0; pos < filmTab.length; pos++) {
+			if(filmTab[pos] != null) {
 			visFilm(filmTab[pos]);
 			System.out.println();
+			}
 		}
-
 	}
 
 	// Print out all the films by one producer 
-	public void skrivUtFilmProdusent(Filmarkiv filmer, String delstreng) {
-
+	public static void skrivUtFilmProdusent(Filmarkiv filmer, String delstreng) {
+		
+		System.out.println();
+		System.out.println("----FILMER PRODUSERT AV: '" + delstreng.toUpperCase() + "'----");
+		
+		Film[] filmTab = filmer.sokProdusent(delstreng);
+	
+		for(int pos = 0; pos < filmTab.length; pos++) {
+			if(filmTab[pos] != null) {
+				visFilm(filmTab[pos]);
+				System.out.println();
+			}
+		}
 	}
 
 	//Print out simple statistics including number of films in total and in every genre
@@ -86,13 +101,17 @@ public class Tekstgrensesnitt {
 		filmarkiv.leggTilFilm(new Film(1, "Tony Kaye", "American History X", 1998, Sjanger.DRAMA, "New Line Cinema"));
 		filmarkiv.leggTilFilm(new Film(2, "Kaye", "History", 1998, Sjanger.SCIFI, "New Line Cinema"));
 		
+		System.out.println();
 		filmarkiv.skrivUtTitler();
+		System.out.println();
 		
-		Tekstgrensesnitt.skrivUtStatistikk(filmarkiv);
+//		Tekstgrensesnitt.skrivUtStatistikk(filmarkiv);
 		
-		visFilm(nyFilm);
+//		visFilm(nyFilm);
 		skrivUtFilmDelstrengITittel(filmarkiv, "History");
-
+		skrivUtFilmProdusent(filmarkiv, "Kaye");
+		
+		Fil.skrivTilFil(filmarkiv, "filtest.txt");
 	}
 
 }
