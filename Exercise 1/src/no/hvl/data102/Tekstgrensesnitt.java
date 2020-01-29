@@ -83,7 +83,7 @@ public class Tekstgrensesnitt {
 	//Print out simple statistics including number of films in total and in every genre
 	public static void skrivUtStatistikk(Filmarkiv filmer) {
 
-		System.out.println("\nStatistikk \nAntall filmer: " + filmer.antall());
+		System.out.println("\n----STATISTIKK---- \nAntall filmer: " + filmer.antall());
 
 		Sjanger[] sjang = Sjanger.values();
 		for (int pos = 0; pos < sjang.length; pos++) {
@@ -105,9 +105,9 @@ public class Tekstgrensesnitt {
 		filmarkiv.skrivUtTitler();
 		System.out.println();
 		
-//		Tekstgrensesnitt.skrivUtStatistikk(filmarkiv);
+		Tekstgrensesnitt.skrivUtStatistikk(filmarkiv);
 		
-//		visFilm(nyFilm);
+		visFilm(nyFilm);
 		skrivUtFilmDelstrengITittel(filmarkiv, "History");
 		skrivUtFilmProdusent(filmarkiv, "Kaye");
 		
