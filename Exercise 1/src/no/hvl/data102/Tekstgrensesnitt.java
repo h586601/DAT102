@@ -99,7 +99,7 @@ public class Tekstgrensesnitt {
 		Film nyFilm = Tekstgrensesnitt.lesFilm();
 		filmarkiv.leggTilFilm(nyFilm);
 		filmarkiv.leggTilFilm(new Film(1, "Tony Kaye", "American History X", 1998, Sjanger.DRAMA, "New Line Cinema"));
-		filmarkiv.leggTilFilm(new Film(2, "Kaye", "History", 1998, Sjanger.SCIFI, "New Line Cinema"));
+		filmarkiv.leggTilFilm(new Film(2, "Todd Phillips", "Joker", 2019, Sjanger.DRAMA, "Warner Bros."));
 		
 		System.out.println();
 		filmarkiv.skrivUtTitler();
@@ -109,9 +109,12 @@ public class Tekstgrensesnitt {
 		
 		visFilm(nyFilm);
 		skrivUtFilmDelstrengITittel(filmarkiv, "History");
-		skrivUtFilmProdusent(filmarkiv, "Kaye");
+		skrivUtFilmProdusent(filmarkiv, "To");
 		
 		Fil.skrivTilFil(filmarkiv, "filtest.txt");
+		Filmarkiv fil = Fil.lesFraFil("filmfil.txt");
+		fil.skrivUtTitler();
+		skrivUtStatistikk(fil);
 	}
 
 }

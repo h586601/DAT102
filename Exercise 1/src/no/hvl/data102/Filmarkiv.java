@@ -92,7 +92,8 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 
 	public void skrivUtTitler() {
-
+		
+		System.out.println("----TITLER----");
 		for (int i = 0; i < antallFilmer; i++) {
 			System.out.println(filmTab[i].getTittel());
 		}
