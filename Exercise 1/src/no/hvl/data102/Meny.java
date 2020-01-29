@@ -30,18 +30,29 @@ public class Meny {
 		System.out.println("Skriv nytt/eksisterende filnavn");
 		String filnavn = leser.nextLine();
 		
+		//WORK ON EXISTING DOC
 		if(valg == 1) {
-		System.out.println("Hva ønsker du å gjøre?");
-		System.out.println("1 - Utføre endringer (legge til, slette e.l.)");
-		System.out.println("2 - Skrive ut informasjon");
-		int valg2 = Integer.parseInt(leser.nextLine());
-			if(valg2 == 2) {
-			System.out.println("Hvilken informasjon vil du ha?");
-			System.out.println("1 - Filmstatistikk");
-			System.out.println("2 - Søke opp tittel");
-			System.out.println("3 - Søke opp produsent");
+			System.out.println("Hva ønsker du å gjøre?");
+			System.out.println("1 - Utføre endringer (legge til, slette e.l.)");
+			System.out.println("2 - Skrive ut informasjon");
+			int valgEksist = Integer.parseInt(leser.nextLine());
+			
+			if(valgEksist == 1) {
+				System.out.println("1 - legge til ny film");
+				System.out.println("2 - slette film fra arkiv");
+				int sisteValg = Integer.parseInt(leser.nextLine());
+				
+				if(sisteValg == 1) {
+					Film nyFilm = tekstgr.lesFilm();
+//					filmer.leggTilFilm(nyFilm); NULL POINTER EXCEPTION!
+//					Fil.skrivTilFil(filmer, filnavn);
+				} else if(sisteValg == 2) {
+//					System.out.println("Hvilket filmnummer vil du slette?");
+//					int filmnr = Integer.parseInt(leser.nextLine());
+//					filmer.slettFilm(filmnr);
+				}
 			}
-		} 
+		}
 		
 	}
 	}

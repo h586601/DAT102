@@ -41,13 +41,18 @@ public class Filmarkiv implements FilmarkivADT {
 	public void leggTilFilm(Film nyFilm) {
 
 		if (sokNr(nyFilm.getFilmnr()) == -1) {
+
 			if (antallFilmer == filmTab.length) {
 				utvidFilmarkiv();
+
 			}
+
 			filmTab[antallFilmer] = nyFilm;
+
 			antallFilmer++;
 
 		} else {
+
 			System.out.println("Denne filmen eksisterer allerede.");
 
 		}
