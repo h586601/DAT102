@@ -27,8 +27,21 @@ public class Meny {
 		Scanner leser = new Scanner(System.in);
 		int valg = Integer.parseInt(leser.nextLine());
 		
+		System.out.println("Skriv nytt/eksisterende filnavn");
+		String filnavn = leser.nextLine();
 		
-		
+		if(valg == 1) {
+		System.out.println("Hva ønsker du å gjøre?");
+		System.out.println("1 - Utføre endringer (legge til, slette e.l.)");
+		System.out.println("2 - Skrive ut informasjon");
+		int valg2 = Integer.parseInt(leser.nextLine());
+			if(valg2 == 2) {
+			System.out.println("Hvilken informasjon vil du ha?");
+			System.out.println("1 - Filmstatistikk");
+			System.out.println("2 - Søke opp tittel");
+			System.out.println("3 - Søke opp produsent");
+			}
+		} 
 		
 	}
-}
+	}

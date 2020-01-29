@@ -54,10 +54,13 @@ public class Fil {
        
 	}
 	
-		
+	
 	public static void skrivTilFil(FilmarkivADT filma, String filnavn)  {
 		try {
-			
+			/*
+			 * If the file does not exist, a new file will be created
+			 * If we cannot be opened, the method throws an exception type IOException
+			 */
 			FileWriter ansFil = new FileWriter(filnavn, false);
 			PrintWriter utfil = new PrintWriter(ansFil);
 			int antall = filma.antall();

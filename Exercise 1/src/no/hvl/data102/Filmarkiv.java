@@ -22,16 +22,38 @@ public class Filmarkiv implements FilmarkivADT {
 	public Film[] hentFilmTabell() {
 		return filmTab;
 	}
+	
 
+	public void utvidFilmarkiv() {
+
+		Film[] biggerArray = new Film[(int)Math.ceil(1.1 * filmTab.length)];
+
+		for (int i = 0; i < filmTab.length; i++) {
+			biggerArray[i] = filmTab[i];
+
+		}
+		filmTab = biggerArray;
+
+	}
+	
+	
 	@Override
 	public void leggTilFilm(Film nyFilm) {
 
-		if (antallFilmer < filmTab.length) {
+		if (sokNr(nyFilm.getFilmnr()) == -1) {
+			if (antallFilmer == filmTab.length) {
+				utvidFilmarkiv();
+			}
 			filmTab[antallFilmer] = nyFilm;
 			antallFilmer++;
+
+		} else {
+			System.out.println("Denne filmen eksisterer allerede.");
+
 		}
 	}
 
+	
 	@Override
 	public boolean slettFilm(int filmnr) {
 
@@ -47,6 +69,7 @@ public class Filmarkiv implements FilmarkivADT {
 		return false;
 	}
 
+	
 	// Helper method
 	public int sokNr(int filmNr) {
 
@@ -57,9 +80,8 @@ public class Filmarkiv implements FilmarkivADT {
 
 		}
 		return -1;
-
-
 	}
+	
 	
 	@Override
 	public Film[] sokTittel(String delstreng) {
@@ -76,6 +98,7 @@ public class Filmarkiv implements FilmarkivADT {
 		return tittelTabell;
 	}
 
+	
 	@Override
 	public Film[] sokProdusent(String delstreng) {
 		Film[] produsentTabell = new Film[antallFilmer];
@@ -91,6 +114,7 @@ public class Filmarkiv implements FilmarkivADT {
 		return produsentTabell;
 	}
 
+	
 	public void skrivUtTitler() {
 		
 		System.out.println("----TITLER----");
@@ -100,6 +124,7 @@ public class Filmarkiv implements FilmarkivADT {
 
 	}
 
+	
 	@Override
 	public int antallSjanger(Sjanger sjanger) {
 		int antallSjanger = 0;
@@ -114,6 +139,7 @@ public class Filmarkiv implements FilmarkivADT {
 		return antallSjanger;
 	}
 
+	
 	@Override
 	public int antall() {
 		return antallFilmer;
