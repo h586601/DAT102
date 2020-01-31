@@ -1,6 +1,5 @@
 package no.hvl.data102;
 
-
 import java.util.Scanner;
 
 /**
@@ -30,6 +29,7 @@ public class Meny {
 		System.out.println("Skriv nytt/eksisterende filnavn");
 		String filnavn = leser.nextLine();
 		
+		
 		//WORK ON EXISTING DOC
 		if(valg == 1) {
 			System.out.println("Hva ønsker du å gjøre?");
@@ -38,21 +38,32 @@ public class Meny {
 			int valgEksist = Integer.parseInt(leser.nextLine());
 			
 			if(valgEksist == 1) {
-				System.out.println("1 - legge til ny film");
-				System.out.println("2 - slette film fra arkiv");
+				System.out.println("1 - Legge til ny film");
+				System.out.println("2 - Slette film fra arkiv");
 				int sisteValg = Integer.parseInt(leser.nextLine());
 				
 				if(sisteValg == 1) {
 					Film nyFilm = tekstgr.lesFilm();
-//					filmer.leggTilFilm(nyFilm); NULL POINTER EXCEPTION!
-//					Fil.skrivTilFil(filmer, filnavn);
+					filmer.leggTilFilm(nyFilm); 
+					Fil.skrivTilFil(filmer, filnavn);
 				} else if(sisteValg == 2) {
-//					System.out.println("Hvilket filmnummer vil du slette?");
-//					int filmnr = Integer.parseInt(leser.nextLine());
-//					filmer.slettFilm(filmnr);
+					System.out.println("Hvilket filmnummer vil du slette?");
+					int filmnr = Integer.parseInt(leser.nextLine());
+					if(filmer.slettFilm(filmnr)) {
+						Fil.skrivTilFil(filmer, filnavn);
+						System.out.println("Film med filmnr " + filmnr + " er slettet");
+					} else {
+						System.out.println("Filmen ble ikke slettet");
+					}
 				}
+			} else if(valgEksist == 2) {
+				System.out.println("Hva ønsker du?");
+				System.out.println("1 - Skriv ut statestikk");
+				System.out.println("2 - Søk etter tittel");
+				System.out.println("3 - Søk etter produsent");
+				int valgUtskrift = Integer.parseInt(leser.nextLine());
+				
 			}
 		}
-		
 	}
-	}
+}

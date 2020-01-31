@@ -58,8 +58,8 @@ public class Tekstgrensesnitt {
 		
 		for(int pos = 0; pos < filmTab.length; pos++) {
 			if(filmTab[pos] != null) {
-			visFilm(filmTab[pos]);
-			System.out.println();
+				visFilm(filmTab[pos]);
+				System.out.println();
 			}
 		}
 	}

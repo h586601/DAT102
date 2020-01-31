@@ -4,16 +4,17 @@ import no.hvl.data102.adt.*;
 
 public class Filmarkiv implements FilmarkivADT {
 
+	private final static int STDK = 100;
 	private Film[] filmTab;
 	private int antallFilmer;
 
 	public Filmarkiv() {
-
+		this(STDK);
 	}
 
-	public Filmarkiv(int ant) {
+	public Filmarkiv(int startkap) {
 
-		this.filmTab = new Film[ant];
+		this.filmTab = new Film[startkap];
 		this.antallFilmer = 0;
 
 	}
@@ -44,17 +45,12 @@ public class Filmarkiv implements FilmarkivADT {
 
 			if (antallFilmer == filmTab.length) {
 				utvidFilmarkiv();
-
 			}
-
 			filmTab[antallFilmer] = nyFilm;
-
 			antallFilmer++;
 
 		} else {
-
 			System.out.println("Denne filmen eksisterer allerede.");
-
 		}
 	}
 
