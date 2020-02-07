@@ -15,7 +15,7 @@ public class Film {
 	}
 	
 	
-	public Film(int filmnr, String produsent, String tittel, int aarstall, String filmselskap) {
+	public Film(int filmnr, String produsent, String tittel, int aarstall, Sjanger sjanger, String filmselskap) {
 
 		this.filmnr = filmnr;
 		this.produsent = produsent;
