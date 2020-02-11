@@ -23,7 +23,7 @@ public class Filmarkiv2 implements FilmarkivADT {
 		
 		Tekstgrensesnitt.skrivUtFilmDelstrengITittel(arkiv, "In");
 		
-	
+		
 	}
 
 	@Override
@@ -114,9 +114,32 @@ public class Filmarkiv2 implements FilmarkivADT {
 
 	@Override
 	public Film[] sokProdusent(String delstreng) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		LinearNode<Film> current = start;
+		
+		//Part one: find amount in order to create array in correct length
+		int ant = 0;
+		while (current != null) {
+			if (current.getElement().getProdusent().contains(delstreng)) {
+				ant++;
+			}
+			current = current.getNeste();
+		}
+		
+		//Part two: create array and copy objects
+		Film[] prodTab = new Film[ant];
+		int pos = 0;
+		while (current != null) {
+			if (current.getElement().getProdusent().contains(delstreng)) {
+				prodTab[pos] = current.getElement();
+				pos++;
+			}
+			current = current.getNeste();
+		}
+
+		return prodTab;
 	}
+	
 
 	@Override
 	public int antall() {
@@ -125,8 +148,18 @@ public class Filmarkiv2 implements FilmarkivADT {
 
 	@Override
 	public int antallSjanger(Sjanger sjanger) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int antallSjanger = 0;
+		LinearNode<Film> current = start;
+		
+		while(current != null) {
+			if(current.getElement().getSjanger() == sjanger) {
+				antallSjanger++;
+			}
+			current = current.getNeste();
+		}
+
+		return antallSjanger;
 	}
 
 }
