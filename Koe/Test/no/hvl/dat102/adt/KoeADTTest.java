@@ -1,5 +1,6 @@
 package no.hvl.dat102.adt;
 
+//error when trying to add import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,24 +12,21 @@ import org.junit.jupiter.api.Test;
 
 import no.hvl.dat102.adt.KoeADT;
 import no.hvl.dat102.exception.EmptyCollectionException;
-import no.hvl.dat102.kjedet.*;
-import no.hvl.dat102.kjedet.KjedetKoe;
-
 
 public abstract class KoeADTTest {
-	
+
 	// Reference to queue
 	private KoeADT<Integer> koe;
-		
+
 	// Test data
 	private Integer e0 = 1;
 	private Integer e1 = 2;
 	private Integer e2 = 3;
 	private Integer e3 = 4;
 	private Integer e4 = 5;
-	
+
 	protected abstract KoeADT<Integer> reset();
-		
+
 	/**
 	 * Get a new queue before each test
 	 */
@@ -44,13 +42,13 @@ public abstract class KoeADTTest {
 	public void newKoeIsEmpty() {
 		assertTrue(koe.isEmpty());
 	}
-	
+
 	/**
 	 * Testing adding element to queue
 	 */
 	@Test
 	public void addAndDelete() {
-		
+
 		koe.innKoe(e0);
 		koe.innKoe(e1);
 		koe.innKoe(e2);
@@ -61,32 +59,32 @@ public abstract class KoeADTTest {
 			assertEquals(e1, koe.utKoe());
 			assertEquals(e2, koe.utKoe());
 			assertEquals(e3, koe.utKoe());
-		} catch(EmptyCollectionException e) {
+		} catch (EmptyCollectionException e) {
 			fail("Sletting feilet uventet " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Testing add and delete with duplicates
 	 */
 	@Test
 	public void addAndDeleteDuplicate() {
-		
+
 		koe.innKoe(e0);
 		koe.innKoe(e1);
 		koe.innKoe(e1);
 		koe.innKoe(e2);
-		
+
 		try {
 			assertEquals(e0, koe.utKoe());
 			assertEquals(e1, koe.utKoe());
 			assertEquals(e1, koe.utKoe());
 			assertEquals(e2, koe.utKoe());
-		} catch(EmptyCollectionException e) {
+		} catch (EmptyCollectionException e) {
 			fail("XXXX feilet uventet " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Testing the first element
 	 */
@@ -100,11 +98,11 @@ public abstract class KoeADTTest {
 			koe.utKoe();
 			assertEquals(e4, koe.first());
 
-		} catch(EmptyCollectionException e) {
+		} catch (EmptyCollectionException e) {
 			fail("XXXX feilet uventet " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Testing that a queue with some elements is not empty
 	 */
@@ -114,7 +112,7 @@ public abstract class KoeADTTest {
 		koe.innKoe(e1);
 		assertFalse(koe.isEmpty());
 	}
-	
+
 	/**
 	 * Testing that a queue with no elements is empty
 	 */
@@ -124,11 +122,11 @@ public abstract class KoeADTTest {
 			koe.innKoe(e0);
 			koe.utKoe();
 			assertTrue(koe.isEmpty());
-		}catch(EmptyCollectionException e) {
+		} catch (EmptyCollectionException e) {
 			fail("XXXX feilet uventet " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Testing the size of the queue
 	 */
@@ -139,14 +137,14 @@ public abstract class KoeADTTest {
 		koe.innKoe(e1);
 		assertEquals(3, koe.amount());
 	}
-	
+
 	/**
 	 * Attempt to delete from an empty queue will result in "underflow exception"
 	 * 
 	 * @throws EmptyCollectionException expected exception
 	 */
 	@Test
-	public void deleteFromEmptyIsUnderflowed() { 
+	public void deleteFromEmptyIsUnderflowed() {
 		/*
 		 * Assertions.assertThrows(EmptyCollectionException.class, new Executable() {
 		 * 
