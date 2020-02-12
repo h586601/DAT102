@@ -1,11 +1,12 @@
 package no.hvl.dat102.sirkulaer;
 
 import no.hvl.dat102.adt.*;
+import no.hvl.dat102.exception.EmptyCollectionException;
 
 public class SirkulaerKoe<T> implements KoeADT<T> {
 
 	private final static int STDK = 100;
-	private int foran, bak, antall;
+	private int front, bak, antall;
 	private T[] koe;
 
 	public SirkulaerKoe() {
@@ -13,38 +14,67 @@ public class SirkulaerKoe<T> implements KoeADT<T> {
 	}
 
 	public SirkulaerKoe(int startKapasitet) {
-		foran = bak = antall = 0;
+		front = bak = antall = 0;
 		koe = ((T[]) (new Object[startKapasitet]));
 	}
 
 	@Override
 	public void innKoe(T element) {
-		// TODO Auto-generated method stub
+		
+		if(amount() == koe.length) {
+			utvid();
+		}
+		
+		koe[bak] = element;
+		bak = (bak+1) % koe.length;
+		antall++;
 
 	}
-
+	
+	public void utvid() {
+		T[] hjelpeTab = (T[])(new Object[koe.length*2]);
+		
+		for(int pos = 0; pos < antall; pos++) {
+			hjelpeTab[pos] = koe[front];
+			front = (front+1) % koe.length;
+		}
+		
+		front = 0;
+		bak = antall;
+		koe = hjelpeTab;
+	}
+	
 	@Override
 	public T utKoe() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if(amount() == 0) {
+			throw new EmptyCollectionException("Køen");
+		}
+		
+		T element = koe[front];
+		koe[front] = null;
+		front = (front+1) % koe.length;
+		antall--;
+		
+		return element;
 	}
 
 	@Override
 	public T first() {
-		// TODO Auto-generated method stub
-		return null;
+		if(isEmpty()) {
+			throw new EmptyCollectionException("Køen");
+		}
+		return koe[front];
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (amount() == 0);
 	}
 
 	@Override
 	public int amount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return antall;
 	}
 
 }
