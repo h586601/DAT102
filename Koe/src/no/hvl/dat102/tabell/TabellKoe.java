@@ -1,6 +1,7 @@
 package no.hvl.dat102.tabell;
 
 import no.hvl.dat102.adt.*;
+import no.hvl.dat102.exception.EmptyCollectionException;
 
 public class TabellKoe<T> implements KoeADT<T> {
 	private final static int STDK = 100;
@@ -18,38 +19,66 @@ public class TabellKoe<T> implements KoeADT<T> {
 	 * Oppretter en tom kø med kapasitet gitt ved parameter
 	 ******************************************************************/
 	public TabellKoe(int startKapasitet) {
-		bak = 0;
+		bak = 0; // index for adding new elements and number of elements in the queue
 		koe = (T[]) (new Object[startKapasitet]);
 	}
 
 	@Override
 	public void innKoe(T element) {
-		// TODO Auto-generated method stub
 
+		if (koe.length == bak) {
+			utvid();
+		}
+
+		koe[bak] = element;
+		bak++;
+	}
+
+	//Hjelpemetode
+	public void utvid() {
+
+		T[] hjelpeTab = (T[]) (new Object[2 * koe.length]); 
+		for (int pos = 0; pos < koe.length; pos++) {
+			hjelpeTab[pos] = koe[pos];
+		}
+		koe = hjelpeTab;
 	}
 
 	@Override
 	public T utKoe() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (isEmpty()) {
+			throw new EmptyCollectionException("Køen");
+		}
+
+		T element = koe[0];
+		bak--;
+
+		for (int pos = 0; pos < bak; pos++) {
+			koe[pos] = koe[pos + 1];
+		}
+
+		return element;
 	}
 
 	@Override
 	public T first() {
-		// TODO Auto-generated method stub
-		return null;
+		if(isEmpty()) {
+			throw new EmptyCollectionException("Køen");
+		}
+		
+		T firstElement = koe[0];
+		return firstElement;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (bak == 0);
 	}
 
 	@Override
 	public int amount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bak;
 	}
 
 }
