@@ -1,6 +1,7 @@
 package no.hvl.dat102.kjedet;
 
 import no.hvl.dat102.adt.KoeADT;
+import no.hvl.dat102.exception.EmptyCollectionException;
 
 //********************************************************************
 // 
@@ -10,35 +11,65 @@ import no.hvl.dat102.adt.KoeADT;
 public class KjedetKoe<T> implements KoeADT<T> {
 	private int antall;
 	private LinearNode<T> front, bak;
+	
+	public KjedetKoe() {
+		front = bak = null;
+		antall = 0;
+	}
 
 	@Override
 	public void innKoe(T element) {
-		// TODO Auto-generated method stub
 
+		LinearNode<T> nyNode = new LinearNode<T>(element);
+		
+		if(isEmpty()) {
+			front = nyNode;
+		} else {
+			bak.setNeste(nyNode);
+		}
+		
+		bak = nyNode;
+		antall++;
+		
 	}
 
 	@Override
 	public T utKoe() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if(isEmpty()) {
+			throw new EmptyCollectionException("Kø");
+		}
+		
+		T element = front.getElement();
+		front = front.getNeste();
+		antall--;
+		
+		if(isEmpty()) {
+			bak = null;
+		}
+		
+		return element;
 	}
 
 	@Override
 	public T first() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(isEmpty()) {
+			throw new EmptyCollectionException("Køen");
+		}
+		
+		T element = front.getElement();
+		return element;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (amount() == 0);
 	}
 
 	@Override
 	public int amount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return antall;
 	}
 
 }
