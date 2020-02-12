@@ -22,6 +22,34 @@ public class TabellKoe<T> implements KoeADT<T> {
 		koe = (T[]) (new Object[startKapasitet]);
 	}
 
-	// ....
+	@Override
+	public void innKoe(T element) {
+		// TODO Auto-generated method stub
 
-}// class
+	}
+
+	@Override
+	public T utKoe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public T first() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int amount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
