@@ -73,12 +73,13 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			throw new EmptyCollectionException("mengde");
 
 		boolean funnet = false;
-		LinearNode<T> forgjenger, aktuell;
+		LinearNode<T> forgjenger, aktuell = start;
 		T resultat = null;
-		/*
-		 * Fyll ut
-		 * 
-		 */
+		
+		if(aktuell.getElement() == element) {
+
+		}
+		
 		return resultat;
 	}//
 
