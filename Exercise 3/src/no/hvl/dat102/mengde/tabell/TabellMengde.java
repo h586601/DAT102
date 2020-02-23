@@ -78,7 +78,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 		int pos = 0;
 		while(pos < antall && !funnet) {
-			if(tab[pos] == element) {
+			if(tab[pos].equals(element)) {
 				svar = tab[pos];
 				funnet = true;
 				tab[pos] = tab[antall];
@@ -103,13 +103,11 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public boolean equals(MengdeADT<T> m2) {
 		boolean likeMengder = true;
-		T element; //What to do with this element??
-		
-		//Do we check the first set in the array??
+		//T element;
 		
 		Iterator<T> teller = m2.oppramser();
 		
-		if(m2.antall() == antall) {
+		if(m2.antall() == this.antall) {
 			while(teller.hasNext() && likeMengder) {
 				if(!inneholder(teller.next())) {
 					likeMengder = false;
