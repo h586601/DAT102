@@ -129,7 +129,6 @@ public class KjedetMengde<T> implements MengdeADT<T> {
         } else {
             likeMengder = false;
         }
- 
 		
 		return likeMengder;
 	}
@@ -150,9 +149,23 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		LinearNode<T> aktuell = start;
 		T element = null;
 
-		/*
-		 * Fyll ut
-		 */
+		//Adding m1(this)-set unconditionally
+		while(aktuell != null) {
+			 ((KjedetMengde<T>) begge).settInn(aktuell.getElement());
+			 aktuell = aktuell.getNeste();
+		}
+		
+		//Creating an Iterator in order to use hasNext and next
+		Iterator<T> teller = m2.oppramser();
+		
+		//If the set doesn't already contain the element
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(!this.inneholder(element)) {
+				((KjedetMengde<T>) begge).settInn(element);
+			}
+		}
+		
 		return begge;
 	}//
 
@@ -160,11 +173,15 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
 		MengdeADT<T> snittM = new KjedetMengde<T>();
 		T element;
-		/*
-		 * Fyll ut...
-		 * 
-		 * if (this.inneholder(element)) ((KjedetMengde<T>) snittM).settInn(element);
-		 */
+		
+		Iterator<T> teller = m2.oppramser();
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if (this.inneholder(element))	
+				((KjedetMengde<T>) snittM).settInn(element);
+		}
+		
 		return snittM;
 	}
 
@@ -172,10 +189,15 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		MengdeADT<T> differensM = new KjedetMengde<T>();
 		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 */
+		
+		Iterator<T> teller = this.oppramser();
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(!m2.inneholder(element)) {
+				((KjedetMengde<T>) differensM).settInn(element);
+			}
+		}
 
 		return differensM;
 	}

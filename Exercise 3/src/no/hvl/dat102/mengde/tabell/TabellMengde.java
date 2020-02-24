@@ -128,24 +128,42 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	}
 
 	/*
-	 * Denne versjonen av unionen er lite effekktiv
+	 * Denne versjonen av unionen er lite effektiv
 	 * 
-	 * @Override public MengdeADT<T> union(MengdeADT<T> m2) { TabellMengde<T> begge
-	 * = new TabellMengde<T>(); for (int i = 0; i < antall; i++) {
-	 * begge.leggTil(tab[i]); } Iterator<T> teller = m2.oppramser();
+	 * @Override 
+	 * public MengdeADT<T> union(MengdeADT<T> m2) { 
+	 * TabellMengde<T> begge = new TabellMengde<T>(); 
+	 * for (int i = 0; i < antall; i++) {
+	 * begge.leggTil(tab[i]); 
+	 * } 
 	 * 
-	 * while (teller.hasNext()) { begge.leggTil(teller.next()); } return
-	 * (MengdeADT<T>)begge; }
+	 * Iterator<T> teller = m2.oppramser();
+	 * 
+	 * while (teller.hasNext()) { 
+	 * begge.leggTil(teller.next()); 
+	 * } 
+	 * return (MengdeADT<T>)begge; 
+	 * }
 	 */
 	@Override
 
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 		MengdeADT<T> begge = new TabellMengde<T>();
 		T element = null;
-		/*
-		 * Fyll ut
-		 * 
-		 */
+
+		for(int pos = 0; pos < antall; pos++) {
+			((TabellMengde<T>)begge).settInn(tab[pos]);
+		}
+		
+		Iterator<T> teller = m2.oppramser();
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(!inneholder(element)) {
+				((TabellMengde<T>) begge).settInn(element);
+			}
+		}
+			
 		return begge;
 	}//
 
@@ -153,9 +171,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
 		MengdeADT<T> snittM = new TabellMengde<T>();
 		T element = null;
-		/*
-		 * Fyll ut
-		 */
+
+		Iterator<T> teller = m2.oppramser();
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(this.inneholder(element)) {
+				((TabellMengde<T>) snittM).settInn(element);
+			}
+		}
 		return snittM;
 	}
 
@@ -163,11 +187,14 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		MengdeADT<T> differensM = new TabellMengde<T>();
 		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 * if (!m2.inneholder(element)) ((TabellMengde<T>) differensM).settInn(element);
-		 */
+		
+		Iterator<T> teller = this.oppramser();
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if (!m2.inneholder(element)) 
+				((TabellMengde<T>) differensM).settInn(element);
+		}
 
 		return differensM;
 	}
