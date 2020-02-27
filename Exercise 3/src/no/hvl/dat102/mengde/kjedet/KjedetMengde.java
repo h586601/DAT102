@@ -121,7 +121,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
         if (this.antall() == m2.antall()) {
             Iterator<T> teller = m2.oppramser();
             while (teller.hasNext() && likeMengder) {
-                if ((this.inneholder(teller.next())) == false) {
+            	element = teller.next();
+                if (this.inneholder(element) == false) {
                     likeMengder = false;
                 }
             }
@@ -158,7 +159,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		//Creating an Iterator in order to use hasNext and next
 		Iterator<T> teller = m2.oppramser();
 		
-		//If the set doesn't already contain the element
+		//If this set doesn't already contain the element, add it
 		while(teller.hasNext()) {
 			element = teller.next();
 			if(!this.inneholder(element)) {
@@ -205,7 +206,15 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
 		boolean erUnderMengde = true;
-		// Fyll ut
+		Iterator<T> teller = m2.oppramser();
+		
+		while(teller.hasNext()) {
+			T element = teller.next();
+			if(!this.inneholder(element)) {
+				erUnderMengde = false;
+			}
+		}
+		
 		return erUnderMengde;
 	}
 

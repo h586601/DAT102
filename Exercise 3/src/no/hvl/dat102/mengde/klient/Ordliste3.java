@@ -5,7 +5,7 @@ import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 
 public class Ordliste3 {
 
-	public static void main(String[] args, int String) {
+	public static void main(String[] args) {
 
 		MengdeADT<String> ordListe1 = new KjedetMengde<String>();
 

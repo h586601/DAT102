@@ -15,7 +15,7 @@ public interface MengdeADT<T> {
 
 	/**
 	 * 
-	 * @param m2 er mengden som skal legges til denne mengden Legger til de
+	 * @param m2 er mengden som skal legges til denne mengden. Legger til de
 	 *           elementer i m2 som ikke fins fra før i denne mengden m1 (this).
 	 */
 	void leggTilAlle(MengdeADT<T> m2);

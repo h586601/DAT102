@@ -1,6 +1,7 @@
 package no.hvl.dat102.mengde.klient;
 
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+import no.hvl.dat102.mengde.tabell.*;
 
 public class KlientBingo {
 	// Oppretter 2 mengder med 75 bingokuler i hver.
@@ -13,6 +14,7 @@ public class KlientBingo {
 		KjedetMengde<Bingokule> mengde2 = new KjedetMengde<Bingokule>();
 		Bingokule kule1 = null;
 		Bingokule kule2 = null;
+		
 
 		for (int i = 1; i <= ANTALL_BALLER; i++) {
 			kule1 = new Bingokule(i);
