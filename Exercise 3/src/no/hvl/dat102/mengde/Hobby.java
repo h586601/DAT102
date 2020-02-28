@@ -16,7 +16,7 @@ public class Hobby {
 	}
 	
 	/**
-	 * @return boolean. True if this hobby equals to hobby2
+	 * @return boolean. True if this hobbyName equals to hobby2
 	 */
 	public boolean equals(Object hobby2) {
 		Hobby hobbyDenAndre = (Hobby)hobby2;
