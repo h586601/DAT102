@@ -32,7 +32,7 @@ public abstract class MengdeADTTest {
 	 * Testing if the method Union adds all elements from both sets (m1 U m2)
 	 */
 	@Test
-	public void unionTest() {
+	public void unionFellesTest() {
 		m1.leggTil(2);
 		m1.leggTil(3);
 		m1.leggTil(4);
@@ -49,11 +49,35 @@ public abstract class MengdeADTTest {
 		assertTrue(begge.equals(m1.union(m2)));
 	}
 	
+	
+	/**
+	 * Testing when two sets having no elements in common (disjoint).
+	 */
+	@Test
+	public void unionIkkeFellesTest() {
+		m1.leggTil(3);
+		m1.leggTil(4);
+		m1.leggTil(5);
+		
+		m2.leggTil(1);
+		m2.leggTil(2);
+		
+		//Fasitmengde
+		begge.leggTil(1);
+		begge.leggTil(2);
+		begge.leggTil(3);
+		begge.leggTil(4);
+		begge.leggTil(5);
+		
+		assertTrue(begge.equals(m1.union(m2)));
+	}
+	
+	
 	/**
 	 * Testing if method Snitt adds only elements that is contained in both sets
 	 */
 	@Test
-	public void snittTest() {
+	public void snittFellesTest() {
 		m1.leggTil(1);
 		m1.leggTil(2);
 		m1.leggTil(3);
@@ -70,11 +94,32 @@ public abstract class MengdeADTTest {
 		
 	}
 	
+	
+	/**
+	 * Testing if Snitt method works when there is no common element (disjoint)
+	 */
+	@Test
+	public void snittIkkeFellesTest() {
+		m1.leggTil(1);
+		m1.leggTil(2);
+		m1.leggTil(3);
+		
+		m2.leggTil(4);
+		m2.leggTil(5);
+		m2.leggTil(6);
+		
+		//Fasitmengde tom
+		
+		assertTrue(begge.equals(m1.snitt(m2)));
+		
+	}
+	
+	
 	/**
 	 * Testing difference between two sets (m1 - m2)
 	 */
 	@Test
-	public void diffTest() {
+	public void diffFellesTest() {
 		m1.leggTil(1);
 		m1.leggTil(2);
 		m1.leggTil(3);
@@ -89,6 +134,27 @@ public abstract class MengdeADTTest {
 		//Fasitmengde
 		begge.leggTil(2);
 		begge.leggTil(4);
+		
+		assertTrue(begge.equals(m1.differens(m2)));
+	}
+	
+	/**
+	 * Testing the difference when the two sets do not have any elements in common (disjoint)
+	 */
+	@Test
+	public void diffIkkeFellesTest() {
+		m1.leggTil(1);
+		m1.leggTil(2);
+		m1.leggTil(3);
+		
+		m2.leggTil(4);
+		m2.leggTil(5);
+		m2.leggTil(6);
+		
+		//Fasitmengde
+		begge.leggTil(1);
+		begge.leggTil(2);
+		begge.leggTil(3);
 		
 		assertTrue(begge.equals(m1.differens(m2)));
 	}
