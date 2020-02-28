@@ -10,8 +10,8 @@ public class KlientBingo {
 
 	public static void main(String[] a) {
 		final int ANTALL_BALLER = 75;
-		KjedetMengde<Bingokule> mengde1 = new KjedetMengde<Bingokule>();
-		KjedetMengde<Bingokule> mengde2 = new KjedetMengde<Bingokule>();
+		TabellMengde<Bingokule> mengde1 = new TabellMengde<Bingokule>();
+		TabellMengde<Bingokule> mengde2 = new TabellMengde<Bingokule>();
 		Bingokule kule1 = null;
 		Bingokule kule2 = null;
 		
