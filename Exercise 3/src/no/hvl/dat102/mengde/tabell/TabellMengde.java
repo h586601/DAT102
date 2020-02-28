@@ -104,12 +104,14 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	}
 
 	@Override
-	public boolean equals(MengdeADT<T> m2) {
+	public boolean equals(Object m2) {
 		boolean likeMengder = true;
 		T element;
+		
+		MengdeADT<T> mengde2 = (TabellMengde<T>)m2;
 
-		if (m2.antall() == this.antall) {
-			Iterator<T> teller = m2.oppramser();
+		if (mengde2.antall() == this.antall) {
+			Iterator<T> teller = mengde2.oppramser();
 			while (teller.hasNext() && likeMengder) {
 				element = teller.next();
 				if (!this.inneholder(element)) {

@@ -114,12 +114,14 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	}
 
 	@Override
-	public boolean equals(MengdeADT<T> m2) {
+	public boolean equals(Object m2) {
 		boolean likeMengder = true;
 		T element = null;
 		
-        if (this.antall() == m2.antall()) {
-            Iterator<T> teller = m2.oppramser();
+		MengdeADT<T> mengde2 = (KjedetMengde<T>)m2;
+		
+        if (this.antall() == mengde2.antall()) {
+            Iterator<T> teller = mengde2.oppramser();
             while (teller.hasNext() && likeMengder) {
             	element = teller.next();
                 if (this.inneholder(element) == false) {

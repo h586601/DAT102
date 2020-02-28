@@ -50,7 +50,7 @@ public interface MengdeADT<T> {
 	 * @param m2 er mengden som testes
 	 * @return sann hvis m1 og m2  er like ellers usann
 	 */
-	boolean equals(MengdeADT<T> m2);
+	boolean equals(Object m2);
 
 	/**
 	 * Tester om mengden er tom (dvs. har 0 element)
