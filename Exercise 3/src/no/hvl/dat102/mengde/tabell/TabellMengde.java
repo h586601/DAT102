@@ -210,5 +210,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		tab[antall] = element;
 		antall++;
 	}
+	
+	
 
 }// class
