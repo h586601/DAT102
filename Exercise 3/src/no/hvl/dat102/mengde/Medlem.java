@@ -1,7 +1,5 @@
 package no.hvl.dat102.mengde;
 
-import java.util.Iterator;
-
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
@@ -17,7 +15,7 @@ public class Medlem {
 		this.hobbyer = new TabellMengde<Hobby>();
 		this.statusIndeks = -1;
 	}
-	
+
 	public Medlem(String navn, MengdeADT<Hobby> hobbyer) {
 		this.navn = navn;
 		this.hobbyer = hobbyer;
@@ -40,12 +38,14 @@ public class Medlem {
 	}
 
 	/**
-	 * A method that outputs all member data
+	 * A method that outputs all data for one member
 	 */
-	@Override
 	public String toString() {
 		String s = "";
-
+		s += "Name: " + navn;
+		s += "\nHobbies: " + hobbyer.toString();
+		s += "\nStatus: ";
+		s += (statusIndeks == -1) ? "No partner" : ("Partner with " + statusIndeks);
 		return s;
 	}
 
@@ -73,18 +73,4 @@ public class Medlem {
 		this.statusIndeks = statusIndeks;
 	}
 
-	public static void main(String[] args) {
-		MengdeADT<Hobby> hobbyListe = new TabellMengde<Hobby>();
-		hobbyListe.leggTil(new Hobby("swim"));
-		hobbyListe.leggTil(new Hobby("work out"));
-		Medlem pers1 = new Medlem("Adam", hobbyListe);
-
-		MengdeADT<Hobby> hobbyListe2 = new TabellMengde<Hobby>();
-		hobbyListe2.leggTil(new Hobby("work out"));
-		hobbyListe2.leggTil(new Hobby("swim"));
-		Medlem pers2 = new Medlem("Eva", hobbyListe2);
-
-		System.out.println(pers1.passerTil(pers2));
-
-	}
 }

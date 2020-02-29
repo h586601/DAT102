@@ -6,16 +6,16 @@ import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Datakontakt {
 
-	private static TabellMengde<Medlem> medlemstabell; // opplysninger om medlemmer
+	private TabellMengde<Medlem> medlemstabell; // opplysninger om medlemmer
 	private int antallMedlemmer;
 
 	public Datakontakt() {
-		Datakontakt.medlemstabell = new TabellMengde<Medlem>();
+		medlemstabell = new TabellMengde<Medlem>();
 		this.antallMedlemmer = medlemstabell.antall();
 	}
 
 	public Datakontakt(int start) {
-		Datakontakt.medlemstabell = new TabellMengde<Medlem>(start);
+		medlemstabell = new TabellMengde<Medlem>(start);
 		this.antallMedlemmer = 0;
 	}
 
@@ -27,7 +27,7 @@ public class Datakontakt {
 		medlemstabell.leggTil(person);
 	}
 
-	public static int finnMedlemsIndeks(String medlemsnavn) {
+	public int finnMedlemsIndeks(String medlemsnavn) {
 		int funnet = 1;
 		Iterator<Medlem> teller = medlemstabell.oppramser();
 		int pos = 0;
@@ -43,7 +43,7 @@ public class Datakontakt {
 		return funnet;
 	}
 
-	public int finnParnerFor(String medlemsnavn) {
+	public int finnPartnerFor(String medlemsnavn) {
 		int passer = -1;
 		Medlem medlem1 = hentMedlem(medlemsnavn);
 
@@ -74,12 +74,13 @@ public class Datakontakt {
 	}
 
 	// ternary operator ? :
-	public static Medlem hentMedlem(String medlemsnavn) {
+	public Medlem hentMedlem(String medlemsnavn) {
 		int medlemsindeks = finnMedlemsIndeks(medlemsnavn);
 		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
 	}
 
-	public static Medlem hentMedlemMedIndeks(int medlemsindeks) {
+	public Medlem hentMedlemMedIndeks(int medlemsindeks) {
 		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
 	}
+	
 }

@@ -9,9 +9,10 @@ public class Hobby {
 	}
 	
 	//Return name of the hobbies with < before and > after a string
-	//Example: <work out, swim>
+	//Example: <climb, swim>
 	public String toString() {
-		return "<" + hobbyNavn + ">";
+		return hobbyNavn;
+		
 	}
 	
 	//Check if two hobbies are the same
