@@ -8,16 +8,13 @@ public class Hobby {
 		hobbyNavn = hobby;
 	}
 	
-	/**
-	 * @return name of hobby with < in front and > behind like a string (example <draw, paint>)
-	 */
+	//Return name of the hobbies with < before and > after a string
+	//Example: <work out, swim>
 	public String toString() {
 		return "<" + hobbyNavn + ">";
 	}
 	
-	/**
-	 * @return boolean. True if this hobbyName equals to hobby2
-	 */
+	//Check if two hobbies are the same
 	public boolean equals(Object hobby2) {
 		Hobby hobbyDenAndre = (Hobby)hobby2;
 		return (hobbyNavn.equals(hobbyDenAndre.getHobbyNavn()));
@@ -30,10 +27,6 @@ public class Hobby {
 	 */
 	public String getHobbyNavn() {
 		return hobbyNavn;
-	}
-
-	public void setHobbyNavn(String hobbyNavn) {
-		this.hobbyNavn = hobbyNavn;
 	}
 
 	

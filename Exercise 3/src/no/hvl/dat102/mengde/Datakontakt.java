@@ -1,51 +1,85 @@
 package no.hvl.dat102.mengde;
 
+import java.util.Iterator;
+
+import no.hvl.dat102.mengde.tabell.TabellMengde;
+
 public class Datakontakt {
 
-	private final static int STDK = 100;
-	private Medlem[] medlemstabell; //opplysninger om medlemmer
+	private static TabellMengde<Medlem> medlemstabell; // opplysninger om medlemmer
 	private int antallMedlemmer;
-	
+
 	public Datakontakt() {
-		this(STDK);
-	}
-	
-	public Datakontakt(int startkap) {
-		this.medlemstabell = new Medlem[startkap];
-		this.antallMedlemmer = 0;
-	}
-	
-	public void leggTilMedlem(Medlem person) {
-		//Can make an if statement about the persons name existence
-		
-		if(antallMedlemmer == medlemstabell.length) {
-			utvidTabell();
-		}
-		medlemstabell[antallMedlemmer] = person;
-		antallMedlemmer++;
-	}
-	
-	private void utvidTabell() {
-		Medlem[] hjelpetabell = new Medlem[medlemstabell.length*2];
-		
-		for(int pos = 0; pos < medlemstabell.length; pos++) {
-			hjelpetabell[pos] = medlemstabell[pos];
-		}
-		
-		medlemstabell = hjelpetabell;
+		Datakontakt.medlemstabell = new TabellMengde<Medlem>();
+		this.antallMedlemmer = medlemstabell.antall();
 	}
 
-	public int finnMedlemsIndeks(String medlemsnavn) {
-		
-		return 0;
+	public Datakontakt(int start) {
+		Datakontakt.medlemstabell = new TabellMengde<Medlem>(start);
+		this.antallMedlemmer = 0;
 	}
-	
+
+	public int getAntall() {
+		return antallMedlemmer;
+	}
+
+	public void leggTilMedlem(Medlem person) {
+		medlemstabell.leggTil(person);
+	}
+
+	public static int finnMedlemsIndeks(String medlemsnavn) {
+		int funnet = 1;
+		Iterator<Medlem> teller = medlemstabell.oppramser();
+		int pos = 0;
+
+		while (teller.hasNext() && funnet == -1) {
+			Medlem element = teller.next();
+			if (medlemsnavn.equals(element.getNavn())) {
+				funnet = pos;
+			} else {
+				pos++;
+			}
+		}
+		return funnet;
+	}
+
 	public int finnParnerFor(String medlemsnavn) {
-		
-		return 0;
+		int passer = -1;
+		Medlem medlem1 = hentMedlem(medlemsnavn);
+
+		Iterator<Medlem> teller = medlemstabell.oppramser();
+
+		while (teller.hasNext() && (passer == -1)) {
+			Medlem medlem2 = teller.next();
+			if (medlem2.passerTil(medlem1) && medlem2.getStatusIndeks() != -1) {
+				passer = finnMedlemsIndeks(medlem2.getNavn());
+				medlem1.setStatusIndeks(passer);
+				medlem2.setStatusIndeks(finnMedlemsIndeks(medlemsnavn));
+			}
+		}
+
+		return passer;
 	}
-	
+
 	public void tilbakestillStatusIndeks(String medlemsnavn) {
-		
+		Medlem medlem = hentMedlem(medlemsnavn);
+
+		int partnerIndeks = medlem.getStatusIndeks();
+		Medlem partner = hentMedlemMedIndeks(partnerIndeks);
+
+		if (medlem != null && partner != null) {
+			medlem.setStatusIndeks(-1);
+			partner.setStatusIndeks(-1);
+		}
+	}
+
+	// ternary operator ? :
+	public static Medlem hentMedlem(String medlemsnavn) {
+		int medlemsindeks = finnMedlemsIndeks(medlemsnavn);
+		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
+	}
+
+	public static Medlem hentMedlemMedIndeks(int medlemsindeks) {
+		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
 	}
 }

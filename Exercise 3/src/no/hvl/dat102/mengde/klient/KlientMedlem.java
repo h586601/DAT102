@@ -1,5 +1,7 @@
 package no.hvl.dat102.mengde.klient;
 
+import no.hvl.dat102.mengde.Hobby;
+import no.hvl.dat102.mengde.Medlem;
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
@@ -23,6 +25,9 @@ public class KlientMedlem {
 		
 		
 		System.out.println(hobbyListe1.equals(hobbyListe2)); 
+		
+	
+		
 		
 	}
 
