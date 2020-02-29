@@ -11,9 +11,7 @@ public class Medlem {
 
 	public Medlem() {
 
-		this.navn = "";
-		this.hobbyer = new TabellMengde<Hobby>();
-		this.statusIndeks = -1;
+		
 	}
 
 	public Medlem(String navn, MengdeADT<Hobby> hobbyer) {
@@ -22,17 +20,13 @@ public class Medlem {
 		this.statusIndeks = -1;
 	}
 
-	public Medlem(String navn, MengdeADT<Hobby> hobbyer, int status) {
-		this.navn = navn;
-		this.hobbyer = hobbyer;
-		this.statusIndeks = status;
-	}
 
 	public boolean passerTil(Medlem medlem2) {
 		MengdeADT<Hobby> m2 = medlem2.getHobbyer();
 		return hobbyer.equals(m2);
 	}
 
+	
 	public String toString() {
 		String s = "";
 		s += "Name: " + navn;
