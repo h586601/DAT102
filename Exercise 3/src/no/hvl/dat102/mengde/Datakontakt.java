@@ -6,7 +6,7 @@ import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Datakontakt {
 
-	private TabellMengde<Medlem> medlemstabell; // opplysninger om medlemmer
+	private TabellMengde<Medlem> medlemstabell; 
 	private int antallMedlemmer;
 
 	public Datakontakt() {

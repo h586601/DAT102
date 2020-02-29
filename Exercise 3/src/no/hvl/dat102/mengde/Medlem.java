@@ -28,18 +28,11 @@ public class Medlem {
 		this.statusIndeks = status;
 	}
 
-	/**
-	 * @param medlem2
-	 * @return boolean, true if two members have the same hobbies
-	 */
 	public boolean passerTil(Medlem medlem2) {
 		MengdeADT<Hobby> m2 = medlem2.getHobbyer();
 		return hobbyer.equals(m2);
 	}
 
-	/**
-	 * A method that outputs all data for one member
-	 */
 	public String toString() {
 		String s = "";
 		s += "Name: " + navn;

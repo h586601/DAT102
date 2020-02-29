@@ -22,10 +22,6 @@ public class Hobby {
 	}
 
 	
-	/**
-	 * Getters and setters
-	 * @return hobbynavn
-	 */
 	public String getHobbyNavn() {
 		return hobbyNavn;
 	}
