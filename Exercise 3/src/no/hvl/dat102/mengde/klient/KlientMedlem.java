@@ -3,6 +3,8 @@ package no.hvl.dat102.mengde.klient;
 import no.hvl.dat102.mengde.Hobby;
 import no.hvl.dat102.mengde.Medlem;
 import no.hvl.dat102.mengde.Tekstgrensesnitt;
+
+
 import no.hvl.dat102.mengde.Datakontakt;
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
@@ -13,8 +15,9 @@ public class KlientMedlem {
 		
 		Medlem medlem1 = Tekstgrensesnitt.lesMedlem();
 		System.out.println(medlem1);
-		
+	
 		Tekstgrensesnitt.skrivHobbyListe(medlem1);
+		
 		
 		System.out.println();
 		System.out.println();
@@ -37,7 +40,16 @@ public class KlientMedlem {
 		System.out.println(pers1);
 		System.out.println();
 		System.out.println(pers2);
-	
+		
+		
+		Datakontakt arkiv = new Datakontakt();
+		arkiv.leggTilMedlem(pers1);
+		arkiv.leggTilMedlem(pers2);
+		System.out.println(arkiv.getAntall());
+		
+		arkiv.finnPartnerFor("Ida");
+		System.out.println();
+		System.out.println(medlem1);
 	}
 
 }

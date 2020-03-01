@@ -24,7 +24,9 @@ public class Tekstgrensesnitt {
 		}
 		
 		nyttMedlem = new Medlem(navn, hobbies);
-
+		
+		leser.close();
+		
 		return nyttMedlem;
 	}
 	

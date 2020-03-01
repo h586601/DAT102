@@ -20,7 +20,7 @@ public class Datakontakt {
 	}
 
 	public int getAntall() {
-		return antallMedlemmer;
+		return medlemstabell.antall();
 	}
 
 	public void leggTilMedlem(Medlem person) {
@@ -28,7 +28,7 @@ public class Datakontakt {
 	}
 
 	public int finnMedlemsIndeks(String medlemsnavn) {
-		int funnet = 1;
+		int funnet = -1;
 		Iterator<Medlem> teller = medlemstabell.oppramser();
 		int pos = 0;
 
@@ -51,7 +51,7 @@ public class Datakontakt {
 
 		while (teller.hasNext() && (passer == -1)) {
 			Medlem medlem2 = teller.next();
-			if (medlem2.passerTil(medlem1) && medlem2.getStatusIndeks() != -1) {
+			if (medlem2.passerTil(medlem1) && (medlem2.getStatusIndeks() == -1) && (medlem2.getNavn() != medlemsnavn)) {
 				passer = finnMedlemsIndeks(medlem2.getNavn());
 				medlem1.setStatusIndeks(passer);
 				medlem2.setStatusIndeks(finnMedlemsIndeks(medlemsnavn));
@@ -75,9 +75,19 @@ public class Datakontakt {
 
 	// ternary operator ? :
 	public Medlem hentMedlem(String medlemsnavn) {
-		int medlemsindeks = finnMedlemsIndeks(medlemsnavn);
-		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
+		Iterator<Medlem> teller = medlemstabell.oppramser();
+		Medlem element;
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(element.getNavn().equals(medlemsnavn)) {
+				return element;
+			}
+		}
+		
+		return null;
 	}
+	
 
 	public Medlem hentMedlemMedIndeks(int medlemsindeks) {
 		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];

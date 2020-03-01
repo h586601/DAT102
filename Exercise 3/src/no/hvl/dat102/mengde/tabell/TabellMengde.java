@@ -27,10 +27,6 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	public int antall() {
 		return antall;
 	}
-	
-	public T[] getTab() {
-		return this.tab;
-	}
 
 	@Override
 	public boolean erTom() {
