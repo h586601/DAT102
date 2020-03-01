@@ -18,6 +18,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		this(STDK);
 	}
 
+	@SuppressWarnings("unchecked")
 	public TabellMengde(int start) {
 		antall = 0;
 		tab = (T[]) (new Object[start]);
@@ -44,6 +45,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void utvidKapasitet() {
 		T[] hjelpetabell = (T[]) (new Object[2 * tab.length]);
 		for (int i = 0; i < tab.length; i++) {
@@ -108,6 +110,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		boolean likeMengder = true;
 		T element;
 		
+		@SuppressWarnings("unchecked")
 		MengdeADT<T> mengde2 = (TabellMengde<T>)m2;
 
 		if (mengde2.antall() == this.antall) {

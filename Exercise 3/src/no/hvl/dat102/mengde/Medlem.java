@@ -1,7 +1,6 @@
 package no.hvl.dat102.mengde;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
-import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Medlem {
 
@@ -11,7 +10,6 @@ public class Medlem {
 
 	public Medlem() {
 
-		
 	}
 
 	public Medlem(String navn, MengdeADT<Hobby> hobbyer) {
@@ -20,13 +18,11 @@ public class Medlem {
 		this.statusIndeks = -1;
 	}
 
-
 	public boolean passerTil(Medlem medlem2) {
 		MengdeADT<Hobby> m2 = medlem2.getHobbyer();
 		return hobbyer.equals(m2);
 	}
 
-	
 	public String toString() {
 		String s = "";
 		s += "Name: " + navn;

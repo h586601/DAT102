@@ -20,7 +20,7 @@ public class Datakontakt {
 	}
 
 	public int getAntall() {
-		return medlemstabell.antall();
+		return this.antallMedlemmer;
 	}
 
 	public void leggTilMedlem(Medlem person) {
@@ -90,7 +90,16 @@ public class Datakontakt {
 	
 
 	public Medlem hentMedlemMedIndeks(int medlemsindeks) {
-		return (medlemsindeks == -1) ? null : medlemstabell.getTab()[medlemsindeks];
+		Iterator<Medlem> teller = medlemstabell.oppramser();
+		Medlem element;
+		
+		while(teller.hasNext()) {
+			element = teller.next();
+			if(element.getStatusIndeks() == medlemsindeks) {
+				return element;
+			}
+		}
+		return null;
 	}
 	
 }
