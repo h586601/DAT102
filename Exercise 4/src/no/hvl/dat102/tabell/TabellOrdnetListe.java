@@ -101,14 +101,33 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-		// ...Fyll ut
+		
+		if (erTom()) 
+			throw new EmptyCollectionException("ordnet liste"); 
+		
+		int indeks = finn(element);
+		if(indeks >= 0 && indeks <= bak) {
+			element = liste[indeks]; //might not be necessary, but it can help discover mistake in finn-method
+			for(int pos = indeks; pos < bak; pos++) {
+				liste[pos] = liste[pos+1];
+			}
+			bak--;
+		}
 		return element;
 
 	}
 
 	private int finn(T el) {
-		int i = 0, resultat = IKKE_FUNNET;
-		// ...Fyll ut
+		int pos = 0, resultat = IKKE_FUNNET;
+		
+		while(pos < liste.length && resultat == IKKE_FUNNET) {
+			if(liste[pos] == el) {
+				resultat = pos;
+			} else {
+				pos++;
+			}
+		}
+
 		return resultat;
 	}
 
