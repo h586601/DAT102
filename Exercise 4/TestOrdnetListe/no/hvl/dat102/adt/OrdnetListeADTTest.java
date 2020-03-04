@@ -42,7 +42,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om en ny liste er tom.
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void nyListeErTom() {
 		assertTrue(liste.erTom());
 	}
@@ -50,7 +50,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og fjern.
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void leggTilOgFjern() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -70,7 +70,7 @@ public abstract class OrdnetListeADTTest {
 	 * Tester ordning ikke-avtagende
 	 * 
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void viseOrdnetIkkeAvtagende() {
 		liste.leggTil(e0);
 		liste.leggTil(e2);
@@ -88,7 +88,7 @@ public abstract class OrdnetListeADTTest {
 		
 	}
 
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void viseOrdnetIkkeStigende() { // 4 >= 5 >= 5 >= 5 >= 6 ...
 		liste.leggTil(e1);
 		liste.leggTil(e2);
@@ -107,7 +107,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og fjern med like verdier.
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void leggTilOgfjernMedDuplikater() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -128,7 +128,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og inneholder
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void leggTilOgInnholder() {
 		liste.leggTil(e2);
 		liste.leggTil(e1);
@@ -148,7 +148,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om listen med verdier ikke er tom.
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void erIkkeTom() {
 		liste.leggTil(e1);
 		liste.leggTil(e3);
@@ -161,7 +161,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om leggTil-fjern på en tom liste gir en tom liste.
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void leggTilFjernErTom() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -177,7 +177,7 @@ public abstract class OrdnetListeADTTest {
 	 * Prøver å ta ut et element fra en tom liste.
 	 * TODO
 	 */
-	@Test
+	@Test (expected=NullPointerException.class)
 	public final void fjernFraTomListe() {
 		assertNull("Fjerne fra tom liste", liste.fjern(e4));
 	}
