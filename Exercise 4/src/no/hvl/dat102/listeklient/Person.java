@@ -10,14 +10,12 @@ public class Person implements Comparable<Person> {
 
 	public Person() {
 		this("", "", 0);
-
 	}
 
 	public Person(String fornavn, String etternavn, int foedselsaar) {
 		this.fornavn = fornavn;
 		this.etternavn = etternavn;
 		this.foedselsaar = foedselsaar;
-
 	}
 
 	public void setFoedselsaar(int foedselsaar) {
@@ -50,6 +48,19 @@ public class Person implements Comparable<Person> {
 
 	public int compareTo(Person denAndrePersonen) {
 		int resultat = 0;
+		
+		if(foedselsaar < denAndrePersonen.getFoedselsaar()) {
+			resultat = -1;
+		} 
+		else if(foedselsaar > denAndrePersonen.getFoedselsaar()) {
+			//Ved sammenligning av likefødselsår skal du sammenligne 
+			//etternavn og deretter eventuelt fornavn 
+			//(ikke-avtagende alfabetisk rekkefølge). 
+		} else {
+			resultat = 1;
+		}
+		
+		
 		//... Fyll ut
 		//Kall på compareTo i Stringklassen
 		return resultat;
