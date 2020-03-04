@@ -50,9 +50,9 @@ public class Person implements Comparable<Person> {
 		int resultat = 0;
 		
 		
-		if(foedselsaar < denAndrePersonen.getFoedselsaar()) {
+		if(foedselsaar > denAndrePersonen.getFoedselsaar()) {
 			resultat = -1;
-		} else if(foedselsaar > denAndrePersonen.getFoedselsaar()) {
+		} else if(foedselsaar < denAndrePersonen.getFoedselsaar()) {
 			resultat = 1;
 		} else {
 			if(etternavn.compareTo(denAndrePersonen.getEtternavn()) < 0) {

@@ -5,12 +5,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 public abstract class OrdnetListeADTTest {
 
@@ -46,7 +43,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om en ny liste er tom.
 	 */
-	@Test 
+	@Test
 	public final void nyListeErTom() {
 		assertTrue(liste.erTom());
 	}
@@ -74,7 +71,7 @@ public abstract class OrdnetListeADTTest {
 	 * Tester ordning ikke-avtagende
 	 * 
 	 */
-	@Test 
+	@Test
 	public final void viseOrdnetIkkeAvtagende() {
 		liste.leggTil(e0);
 		liste.leggTil(e2);
@@ -82,17 +79,17 @@ public abstract class OrdnetListeADTTest {
 		liste.leggTil(e5);
 		liste.leggTil(e4);
 		liste.leggTil(e3);
-		
+
 		assertEquals(e0, liste.fjernFoerste());
 		assertEquals(e1, liste.fjernFoerste());
 		assertEquals(e2, liste.fjernFoerste());
 		assertEquals(e3, liste.fjernFoerste());
 		assertEquals(e4, liste.fjernFoerste());
 		assertEquals(e5, liste.fjernFoerste());
-		
+
 	}
 
-	@Test 
+	@Test
 	public final void viseOrdnetIkkeStigende() { // 4 >= 5 >= 5 >= 5 >= 6 ...
 		liste.leggTil(e1);
 		liste.leggTil(e2);
@@ -111,7 +108,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og fjern med like verdier.
 	 */
-	@Test 
+	@Test
 	public final void leggTilOgfjernMedDuplikater() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -132,7 +129,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og inneholder
 	 */
-	@Test 
+	@Test
 	public final void leggTilOgInnholder() {
 		liste.leggTil(e2);
 		liste.leggTil(e1);
@@ -152,7 +149,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om listen med verdier ikke er tom.
 	 */
-	@Test 
+	@Test
 	public final void erIkkeTom() {
 		liste.leggTil(e1);
 		liste.leggTil(e3);
@@ -165,7 +162,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om leggTil-fjern på en tom liste gir en tom liste.
 	 */
-	@Test 
+	@Test
 	public final void leggTilFjernErTom() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -173,15 +170,14 @@ public abstract class OrdnetListeADTTest {
 		liste.fjern(e1);
 		liste.fjern(e2);
 		liste.fjern(e0);
-		
+
 		assertTrue(liste.erTom());
 	}
 
 	/**
-	 * Prøver å ta ut et element fra en tom liste.
-	 * TODO
+	 * Prøver å ta ut et element fra en tom liste. TODO
 	 */
-	@Test 
+	@Test
 	public final void fjernFraTomListe() {
 		assertNull("Fjerne fra tom liste", liste.fjern(e4));
 	}
