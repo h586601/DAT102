@@ -82,7 +82,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		}
 
 		int i = 0;
-		while (i < liste.length && element.compareTo(liste[i]) > 0) {
+		while (i < bak && element.compareTo(liste[i]) > 0) {
 			i++;
 		}
 		int j = bak;
@@ -106,9 +106,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			throw new EmptyCollectionException("ordnet liste"); 
 		
 		int indeks = finn(element);
-		if(indeks >= 0 && indeks <= bak) {
+		if(indeks >= 0 && indeks < bak) {
 			element = liste[indeks];
-			for(int pos = indeks; pos < bak; pos++) {
+			for(int pos = indeks; pos < bak-1; pos++) {
 				liste[pos] = liste[pos+1];
 			}
 			bak--;

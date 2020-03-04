@@ -27,9 +27,11 @@ public class KlientPerson {
 		System.out.println("Fødselsår: ");
 		foedselsaar = Integer.parseInt(leser.next());
 		
+		leser.close();
+		
 		Person personManuell = new Person(fornavn, etternavn, foedselsaar);
 		
-		OrdnetListeADT<Person> liste = new KjedetOrdnetListe<Person>();
+		OrdnetListeADT<Person> liste = new TabellOrdnetListe<Person>();
 		
 		liste.leggTil(anne);
 		liste.leggTil(ole);
