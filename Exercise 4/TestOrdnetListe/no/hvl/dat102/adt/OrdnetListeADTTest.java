@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -34,7 +35,7 @@ public abstract class OrdnetListeADTTest {
 
 	protected abstract OrdnetListeADT<Integer> reset();
 
-	@BeforeEach
+	@Before
 	public final void setup() {
 		liste = reset();
 	}
@@ -42,7 +43,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om en ny liste er tom.
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void nyListeErTom() {
 		assertTrue(liste.erTom());
 	}
@@ -50,7 +51,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og fjern.
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test
 	public final void leggTilOgFjern() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -70,7 +71,7 @@ public abstract class OrdnetListeADTTest {
 	 * Tester ordning ikke-avtagende
 	 * 
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void viseOrdnetIkkeAvtagende() {
 		liste.leggTil(e0);
 		liste.leggTil(e2);
@@ -88,7 +89,7 @@ public abstract class OrdnetListeADTTest {
 		
 	}
 
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void viseOrdnetIkkeStigende() { // 4 >= 5 >= 5 >= 5 >= 6 ...
 		liste.leggTil(e1);
 		liste.leggTil(e2);
@@ -107,7 +108,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og fjern med like verdier.
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void leggTilOgfjernMedDuplikater() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -128,7 +129,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester leggTil og inneholder
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void leggTilOgInnholder() {
 		liste.leggTil(e2);
 		liste.leggTil(e1);
@@ -148,7 +149,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om listen med verdier ikke er tom.
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void erIkkeTom() {
 		liste.leggTil(e1);
 		liste.leggTil(e3);
@@ -161,7 +162,7 @@ public abstract class OrdnetListeADTTest {
 	/**
 	 * Tester om leggTil-fjern på en tom liste gir en tom liste.
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void leggTilFjernErTom() {
 		liste.leggTil(e0);
 		liste.leggTil(e1);
@@ -177,7 +178,7 @@ public abstract class OrdnetListeADTTest {
 	 * Prøver å ta ut et element fra en tom liste.
 	 * TODO
 	 */
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public final void fjernFraTomListe() {
 		assertNull("Fjerne fra tom liste", liste.fjern(e4));
 	}

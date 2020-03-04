@@ -107,7 +107,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		
 		int indeks = finn(element);
 		if(indeks >= 0 && indeks <= bak) {
-			element = liste[indeks]; //might not be necessary, but it can help discover mistake in finn-method
+			element = liste[indeks];
 			for(int pos = indeks; pos < bak; pos++) {
 				liste[pos] = liste[pos+1];
 			}
