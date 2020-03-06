@@ -26,9 +26,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 		T resultat = null;
 		resultat = siste();
-		liste[bak-1] = null;
+		liste[bak - 1] = null;
 		bak--;
-		
+
 		return resultat;
 	}
 
@@ -38,14 +38,14 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			throw new EmptyCollectionException("ordnet liste");
 
 		T resultat = liste[0];
-		
+
 		bak--;
 		int j = 0;
 		while (j < bak) {
-			liste[j] = liste[j+1];
+			liste[j] = liste[j + 1];
 			j++;
 		}
-		
+
 		return resultat;
 	}
 
@@ -62,7 +62,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		return liste[bak-1];
+		return liste[bak - 1];
 	}
 
 	@Override
@@ -101,27 +101,29 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-		
-		if (erTom()) 
-			throw new EmptyCollectionException("ordnet liste"); 
+
+		T resultat = null;
 		
 		int indeks = finn(element);
-		if(indeks >= 0 && indeks < bak) {
-			element = liste[indeks];
-			for(int pos = indeks; pos < bak-1; pos++) {
-				liste[pos] = liste[pos+1];
+		
+		if (indeks >= 0 && indeks < bak) {
+			resultat = liste[indeks];
+			for (int pos = indeks; pos < bak - 1; pos++) {
+				liste[pos] = liste[pos + 1];
 			}
+			liste[bak] = null;
 			bak--;
 		}
-		return element;
+		
+		return resultat;
 
 	}
 
 	private int finn(T el) {
 		int pos = 0, resultat = IKKE_FUNNET;
-		
-		while(pos < liste.length && resultat == IKKE_FUNNET) {
-			if(liste[pos] == el) {
+
+		while (pos < bak && resultat == IKKE_FUNNET) {
+			if (liste[pos].equals(el) && liste[pos] != null) {
 				resultat = pos;
 			} else {
 				pos++;
