@@ -15,6 +15,7 @@ public class KlientMedlem {
 		
 		Medlem medlem1 = Tekstgrensesnitt.lesMedlem();
 		System.out.println(medlem1);
+		
 	
 		Tekstgrensesnitt.skrivHobbyListe(medlem1);
 		
@@ -47,9 +48,11 @@ public class KlientMedlem {
 		arkiv.leggTilMedlem(pers2);
 		System.out.println(arkiv.getAntall());
 		
-		arkiv.finnPartnerFor("Ida");
+		arkiv.finnPartnerFor("Adam");
 		System.out.println();
-		System.out.println(medlem1);
+
+		Tekstgrensesnitt.skrivParListe(arkiv);
+		
 	}
 
 }

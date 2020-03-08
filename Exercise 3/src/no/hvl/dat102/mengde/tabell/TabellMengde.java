@@ -221,6 +221,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		tab[antall] = element;
 		antall++;
 	}
+	
+	//Extra helper method
+	public T hentElementFraIndeks(int i) {
+		if (tab[i] != null) {
+			return tab[i];
+		}
+		return null;
+
+	}
 
 	/******************************************
 	 * Returns a string that represents the set

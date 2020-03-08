@@ -6,7 +6,7 @@ import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Datakontakt {
 
-	private TabellMengde<Medlem> medlemstabell; 
+	private TabellMengde<Medlem> medlemstabell;
 	private int antallMedlemmer;
 
 	public Datakontakt() {
@@ -77,29 +77,85 @@ public class Datakontakt {
 	public Medlem hentMedlem(String medlemsnavn) {
 		Iterator<Medlem> teller = medlemstabell.oppramser();
 		Medlem element;
-		
-		while(teller.hasNext()) {
+
+		while (teller.hasNext()) {
 			element = teller.next();
-			if(element.getNavn().equals(medlemsnavn)) {
+			if (element.getNavn().equals(medlemsnavn)) {
 				return element;
 			}
 		}
-		
+
 		return null;
 	}
-	
 
 	public Medlem hentMedlemMedIndeks(int medlemsindeks) {
 		Iterator<Medlem> teller = medlemstabell.oppramser();
 		Medlem element;
-		
-		while(teller.hasNext()) {
+
+		while (teller.hasNext()) {
 			element = teller.next();
-			if(element.getStatusIndeks() == medlemsindeks) {
+			if (element.getStatusIndeks() == medlemsindeks) {
 				return element;
 			}
 		}
 		return null;
+	}
+
+	// Extra helper methods
+	public int getAntallPar() {
+
+		Iterator<Medlem> teller = oppramser(medlemstabell);
+		Medlem medlem;
+
+		int antallPar = 0;
+		while (teller.hasNext()) {
+			medlem = teller.next();
+			if (medlem.getStatusIndeks() != -1) {
+				antallPar++;
+			}
+		}
+		return antallPar / 2;
+
+	}
+
+	public int[] skrivUtMedlemPar() {
+
+		int[] parIndekser = new int[getAntallPar() * 2];
+		int pos = 0;
+		int medlemIndeks;
+
+		Iterator<Medlem> teller = oppramser(medlemstabell);
+		Medlem medlem;
+
+		while (teller.hasNext()) {
+			medlem = teller.next();
+			medlemIndeks = finnMedlemsIndeks(medlem.getNavn());
+			int statusIndeks = medlem.getStatusIndeks();
+			boolean duplicate = false;
+
+			for (int i = 0; i < parIndekser.length; i++) {
+				if (statusIndeks == parIndekser[i] || medlemIndeks == parIndekser[i]) {
+					duplicate = true;
+				}
+			}
+
+			if (statusIndeks != -1 && !duplicate) {
+				parIndekser[pos] = statusIndeks;
+				pos++;
+				System.out.println(medlem.getNavn() + " og " + hentMedlemFraIndeks(medlem.getStatusIndeks()).getNavn()
+						+ " " + medlem.getHobbyer());
+			}
+		}
+		return parIndekser;
+	}
+	
+	
+	public Iterator<Medlem> oppramser(TabellMengde<Medlem> tab) {
+		return tab.oppramser();
+	}
+	
+	public Medlem hentMedlemFraIndeks(int i) {
+		return medlemstabell.hentElementFraIndeks(i);
 	}
 	
 }
