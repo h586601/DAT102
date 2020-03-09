@@ -65,7 +65,7 @@ public class Datakontakt {
 		Medlem medlem = hentMedlem(medlemsnavn);
 
 		int partnerIndeks = medlem.getStatusIndeks();
-		Medlem partner = hentMedlemMedIndeks(partnerIndeks);
+		Medlem partner = hentMedlemFraIndeks(partnerIndeks);
 
 		if (medlem != null && partner != null) {
 			medlem.setStatusIndeks(-1);
@@ -88,18 +88,7 @@ public class Datakontakt {
 		return null;
 	}
 
-	public Medlem hentMedlemMedIndeks(int medlemsindeks) {
-		Iterator<Medlem> teller = medlemstabell.oppramser();
-		Medlem element;
-
-		while (teller.hasNext()) {
-			element = teller.next();
-			if (element.getStatusIndeks() == medlemsindeks) {
-				return element;
-			}
-		}
-		return null;
-	}
+	
 
 	// Extra helper methods
 	public int getAntallPar() {
@@ -118,12 +107,12 @@ public class Datakontakt {
 
 	}
 
-	public int[] skrivUtMedlemPar() {
-
-		int[] parIndekser = new int[getAntallPar() * 2];
+	public void skrivUtMedlemPar() {
+		
+		int[] usedIndexes = new int[getAntallPar()*2];
 		int pos = 0;
 		int medlemIndeks;
-
+		
 		Iterator<Medlem> teller = oppramser(medlemstabell);
 		Medlem medlem;
 
@@ -133,20 +122,32 @@ public class Datakontakt {
 			int statusIndeks = medlem.getStatusIndeks();
 			boolean duplicate = false;
 
-			for (int i = 0; i < parIndekser.length; i++) {
-				if (statusIndeks == parIndekser[i] || medlemIndeks == parIndekser[i]) {
-					duplicate = true;
+			for (int i = 0; i < usedIndexes.length; i++) {
+				int alleredeLagtTil = usedIndexes[i];
+
+				// always whitelist index 0 due to Java initializing ints in arrays to 0
+				if (statusIndeks != 0) {
+
+					// if current member or his/her partner is already added
+					if (alleredeLagtTil == medlemIndeks || alleredeLagtTil == statusIndeks) {
+						duplicate = true;
+					}
 				}
 			}
 
 			if (statusIndeks != -1 && !duplicate) {
-				parIndekser[pos] = statusIndeks;
+				usedIndexes[pos] = statusIndeks;
 				pos++;
-				System.out.println(medlem.getNavn() + " og " + hentMedlemFraIndeks(medlem.getStatusIndeks()).getNavn()
-						+ " " + medlem.getHobbyer());
+
+				System.out.println(medlem.getNavn() + " og " +
+						hentMedlemFraIndeks(medlem.getStatusIndeks()).getNavn() +
+						"\t" + medlem.getHobbyer()
+						);
+
 			}
+
 		}
-		return parIndekser;
+	
 	}
 	
 	

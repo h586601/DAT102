@@ -35,9 +35,10 @@ public class Tekstgrensesnitt {
 	}
 
 	public static void skrivParListe(Datakontakt arkiv) {
-		System.out.println("PARNAVN HOBBYER");
+		System.out.print("PARNAVN");
+		System.out.println("\t\tHOBBYER");
 		arkiv.skrivUtMedlemPar();
-
+		
 		System.out.println("==========");
 		System.out.println("Antall par funnet: " + arkiv.getAntallPar());
 	}

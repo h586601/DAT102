@@ -235,11 +235,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	 * Returns a string that represents the set
 	 ******************************************/
 	public String toString() {
-		String resultat = "";
+		String resultat = "<";
 
 		for (int pos = 0; pos < antall; pos++) {
-			resultat += tab[pos].toString() + "\t";
+			if(pos > 0) resultat += ", ";
+			
+			resultat += tab[pos].toString();
 		}
+		
+		resultat += ">";
 
 		return resultat;
 
