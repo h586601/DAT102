@@ -67,17 +67,17 @@ public class Parentesinfo {
 	}
 
 	public String toStringIkkeBalansert() {
-		return String.format("Åpnesymbol %c på linje nr %d, teikn nr %d har feil lukkeparentes", venstreparentes,
+		return String.format("Åpnesymbol %c på linje nr %d, tegn nr %d har feil lukkeparentes", venstreparentes,
 				linjenr, posisjon);
 	}
 
 	public String toStringRest() {
-		return String.format("Åpnesymbol %c på linje nr %d, teikn nr %d mangler tilsvarande lukkeparentes",
+		return String.format("Åpnesymbol %c på linje nr %d, tegn nr %d mangler tilsvarande lukkeparentes",
 				venstreparentes, linjenr, posisjon);
 	}
 
 	public String toStringTomStabel() {
-		return String.format("Lukkesymbol %c på linjenr %d, teikn nr %d mangler tilsvarende åpnesymbol.",
+		return String.format("Lukkesymbol %c på linjenr %d, tegn nr %d mangler tilsvarende åpnesymbol.",
 				venstreparentes, linjenr, posisjon);
 	}
 

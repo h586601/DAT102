@@ -31,18 +31,18 @@ public class Balansering {
 
 		for (int i = 0; i < lengde; i++) {
 
-			char parentes = innDataStreng.charAt(i);
+			char tegn = innDataStreng.charAt(i);
 
-			if(parentes == '(' || parentes == '{'|| parentes == '[') {
-				Parentesinfo pinfo = new Parentesinfo(linjenr, i, parentes);
+			if(tegn == '(' || tegn == '{'|| tegn == '[') {
+				Parentesinfo pinfo = new Parentesinfo(linjenr, i, tegn);
 				stabel.push(pinfo);
-			} else if (parentes == ')' || parentes == '}'|| parentes == ']') {
+			} else if (tegn == ')' || tegn == '}'|| tegn == ']') {
 				if (stabel.erTom()) {
 					feil = false;
-					System.out.println(new Parentesinfo(linjenr, i, parentes).toStringTomStabel());
+					System.out.println(new Parentesinfo(linjenr, i, tegn).toStringTomStabel());
 				} else {
 					Parentesinfo poppet = stabel.pop();
-					if ( !passer(poppet.getVenstreparentes(),parentes ) ) {
+					if ( !passer(poppet.getVenstreparentes(),tegn ) ) {
 						feil= false;
 						System.out.println(poppet.toStringIkkeBalansert());
 					}
