@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src2"/>
+	<classpathentry kind="src" path="sortsearch"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -89,10 +89,10 @@ public class DobbelKjedetOrdnetListeM<T extends Comparable<T>> implements Dobbel
 	// av midtpeker
 	// *********************************************************************************
 	private void nyMidten() {
-		if(antall % 2 == 0) {
+		if(antall % 2 == 1) {
 			int midtNR = antall / 2;
 			DobbelNode<T> p = foerste.getNeste();
-			for (int i = 1; i < midtNR; i++) {
+			for (int i = 1; i <= midtNR; i++) {
 				p = p.getNeste();
 			}
 			midten = p;
@@ -142,44 +142,31 @@ public class DobbelKjedetOrdnetListeM<T extends Comparable<T>> implements Dobbel
 		boolean funnet = false;
 
 		if ((el.compareTo(foerste.getElement()) <= 0) || (el.compareTo(siste.getElement()) >= 0)) {
-			// Ugyldig. Alternativt kan vi ha det som et forkrav!
 			System.out.println("Ugyldig verdi. verdi > " + foerste.getElement() + "verdi < " + siste.getElement());
 
-		} else { // Kun lovlige verdier
+		} else {
 
-			if (el.compareTo(midten.getElement()) >= 0) {
-				p = midten;
-			} else {
-				p = foerste.getNeste();
-			}
+			//Modified
+			p = finn(el);
 
-			while (el.compareTo(p.getElement()) > 0) {
-				p = p.getNeste();
-			} // while
+			if (p != null) {
 
-			if (el.compareTo(p.getElement()) == 0) {
-				funnet = true;
-			}
-
-			if (funnet) {
-				// Tar ut
 				antall--;
 
 				p.getForrige().setNeste(p.getNeste());
 				p.getNeste().setForrige(p.getForrige());
 
-				// Oppadatere midten
 				nyMidten();
 
 				resultat = p.getElement();
 
-			} // funnet
+			}
 
-		} // lovlige
+		}
 		return resultat;
-	}//
+	}
 
-	/* Alternativ kan fjern-metoden bruke finn-metoden */
+
 
 	private DobbelNode<T> finn(T el) {
 		DobbelNode<T> node = null;
