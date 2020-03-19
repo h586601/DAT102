@@ -53,7 +53,7 @@ public class KlientPersonliste {
 		// OBS! Lager først en tabell av sorterte data før vi bruker
 		// linearsøking i sortert tabell og binærsøking.
 		/* Sorterer tabellen */
-		SorteringOgSoeking.utvalgSortering(personerS);
+		SorteringOgSoeking.utvalgsSortering(personerS);
 
 		// Utskrift av data
 		System.out.println("\n Sorterte  data ");
