@@ -53,7 +53,7 @@ public class KlientPersonliste {
 		// OBS! Lager først en tabell av sorterte data før vi bruker
 		// linearsøking i sortert tabell og binærsøking.
 		/* Sorterer tabellen */
-		SorteringOgSoeking.utvalgsSortering(personerS);
+		SorteringOgSoeking.utvalgSort(personerS);
 
 		// Utskrift av data
 		System.out.println("\n Sorterte  data ");
@@ -114,14 +114,14 @@ public class KlientPersonliste {
 		} else {
 			System.out.println(person1 + " er ikke med");
 		}
-		
+
 		funnet = SorteringOgSoeking.binaerSoek(personerS, 0, personerS.length - 1, person2);
 		if (funnet) {
 			System.out.println(person2 + " er med");
 		} else {
 			System.out.println(person2 + " er ikke med");
 		}
-				
+
 
 		// Alt 3
 		/* Rekursiv binærsøking som returnerer indeksen, -1 ved ikke-funn */
@@ -151,13 +151,13 @@ public class KlientPersonliste {
 		 * System.out.
 		 * println("\nUtskrift fra rekursiv binaersoking som returnerer indeksen, -1 ved ikke-funn."
 		 * );
-		 * 
+		 *
 		 * ind = SoekingOgSortering.binaerSoek4(personerS, 0, personerS.length -
 		 * 1, person1);
-		 * 
+		 *
 		 * if (ind > 1) { System.out.println(personerS[ind] + " er med"); } else
 		 * { System.out.print(person1 + " er ikke med"); }
-		 * 
+		 *
 		 */
 
 	}// main

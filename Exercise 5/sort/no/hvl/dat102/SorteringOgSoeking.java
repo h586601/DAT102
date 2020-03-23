@@ -1,5 +1,8 @@
 package no.hvl.dat102;
 
+import no.hvl.dat102.adt.KoeADT;
+import no.hvl.dat102.sirkulaer.SirkulaerKoe;
+
 public class SorteringOgSoeking {
 
 	/*************************************************************************************************/
@@ -8,7 +11,7 @@ public class SorteringOgSoeking {
 
 	/**
 	 * Metoden gjør et lineært søk i en tabell av usorterte data
-	 * 
+	 *
 	 * @param data er data som skal søkes i
 	 * @param min  er startindeks
 	 * @param maks er sluttindeks
@@ -29,7 +32,7 @@ public class SorteringOgSoeking {
 
 	/**
 	 * Metoden gjør et lineært søk i en sortert tabell av data
-	 * 
+	 *
 	 * @param data er data som skal søkes i
 	 * @param min  er startindeks
 	 * @param maks er sluttindeks
@@ -54,7 +57,7 @@ public class SorteringOgSoeking {
 
 	/**
 	 * Metoden gjør et binært søk i en *sortert* tabell av data
-	 * 
+	 *
 	 * @param data er data som skal søkes i
 	 * @param min  er startindeks
 	 * @param maks er sluttindeks
@@ -124,9 +127,29 @@ public class SorteringOgSoeking {
 	/* Ikke rekursiv binærsøk som returnerer indeks */
 	// Alt 4
 	public static <T extends Comparable<T>> int binaerSoek4(T[] data, int min, int maks, T el) {
-		return maks;
 		// Returnerer indeksen til målelementet hvis det fins ellers -1
-		// Fyll ut og kjør metoden
+
+		boolean funnet = false;
+
+		int midtpunkt = (min + maks) / 2;
+		int resultat = el.compareTo(data[midtpunkt]);
+
+		while (min < maks && !funnet) {
+			midtpunkt = (min + maks) / 2;
+			resultat = el.compareTo(data[midtpunkt]);
+			if (resultat == 0) { // finner elementet
+				funnet = true;
+				return midtpunkt;
+			}
+
+			if (resultat < 0) {
+				maks = midtpunkt - 1;
+			} else { // resultat > 0
+				min = midtpunkt + 1;
+			}
+
+		}
+		return -1;
 	}//
 
 	/*************************************************************************************************/
@@ -135,10 +158,10 @@ public class SorteringOgSoeking {
 
 	/**
 	 * Utvalgssortering
-	 * 
+	 *
 	 * @param data er data som skal sorteres
 	 */
-	public static <T extends Comparable<T>> void utvalgsSortering(T[] data) {
+	public static <T extends Comparable<T>> void utvalgSort(T[] data) {
 		int minste;
 		T temp;
 		for (int neste = 0; neste < data.length - 1; neste++) {
@@ -158,12 +181,12 @@ public class SorteringOgSoeking {
 
 	/**
 	 * Sortering ved innsetting
-	 * 
+	 *
 	 * @param data er data som skal sorteres
 	 */
 	// ...
 	/**
-	 * 
+	 *
 	 * @param <T>  generisk type
 	 * @param data er tabellen som skal sorteres
 	 */
@@ -209,4 +232,243 @@ public class SorteringOgSoeking {
 
 	}// metode
 
+	public static <T extends Comparable<T>> void sorteringVedInnsetting(T[] data) {
+
+		for (int indeks = 1; indeks < data.length; indeks++) {
+			T nokkel = data[indeks];
+			int p = indeks;
+
+			while (p > 0 && data[p - 1].compareTo(nokkel) > 0) {
+				data[p] = data[p - 1];
+				p--;
+			}
+			data[p] = nokkel;
+		}
+
+	}// metode
+
+
+	/**
+	 * Kvikksortering
+	 *
+	 * @param <T> data som skal sorteres
+	 */
+
+	public static <T extends Comparable<T>> void kvikkSort(T[] data) {
+		kvikkSort(data, 0, data.length-1);
+	}
+
+
+
+	/**
+	 * Kvikksortering med minste- og maksverdi
+	 *
+	 * @param data som skal sorteres
+	 * @param <T> tabellen som skal sorteres
+	 * @param int minsteverdi
+	 * @param int maksverdi
+	 */
+
+	private static <T extends Comparable<T>> void kvikkSort(T[] data, int min, int maks) {
+		int posPartisjon;
+
+		if (min < maks) { // Minst to elementer
+			// Oppretter partisjon
+			posPartisjon = finnPartisjon(data, min, maks);
+
+			// Sorter venstreside
+			kvikkSort(data, min, posPartisjon-1);
+
+			// Sorter høyreside
+			kvikkSort(data, posPartisjon+1, maks);
+		}
+
+	} // kvikkSort()
+
+
+
+	/**
+	 * Finn partisjon (brukes sammen med kvikkSort metoden)
+	 *
+	 * @param data som skal sorteres
+	 * @param <T> tabellen som skal sorteres
+	 * @param int minsteverdi
+	 * @param int maksverdi
+	 * @return int
+	 */
+
+	private static <T extends Comparable<T>> int finnPartisjon(T[] data, int min, int maks) {
+
+		int venstre, hoyre;
+
+		T tmp, pivot;
+
+		// Pivot som første element. Boka bruker midterste.
+		pivot = data[min];
+		venstre = min;
+		hoyre = maks;
+
+		while (venstre < hoyre) {
+			while (venstre < hoyre && data[venstre].compareTo(pivot) <= 0) {
+				venstre++;
+			}
+
+			while (data[hoyre].compareTo(pivot) > 0) {
+				hoyre--;
+			}
+
+			// Bytter elementene
+			if (venstre < hoyre) {
+				tmp = data[venstre];
+				data[venstre] = data[hoyre];
+				data[hoyre] = tmp;
+			}
+
+		} // ytre løkke
+
+
+		// Flytter pivot til sin riktige og endelige plass
+		tmp = data[min];
+		data[min] = data[hoyre];
+		data[hoyre] = tmp;
+		return hoyre;
+
+	} // finnPartisjon()
+
+
+
+	/**
+	 * Flettesortering
+	 *
+	 * @param data som skal sorteres
+	 * @param <T> tabellen som skal sorteres
+	 * @param int første
+	 * @param int siste
+	 */
+
+	public static <T extends Comparable<T>> void fletteSort(T[] data, int forste, int siste) {
+
+		if (forste < siste) { // Minst to elementer
+			int midten = (forste + siste)/2;
+
+			// Sorter venstre halvdel
+			fletteSort(data, forste, midten);
+
+			// Sorter høyre halvdel
+			fletteSort(data, midten+1, siste);
+
+			// Fletter de to halvdelene
+			flette(data, forste, midten, siste);
+		}
+
+	} // fletteSort()
+
+
+
+	/**
+	 * Flette (Brukes sammen med fletteSort metoden)
+	 *
+	 * Fletter to sorterte deltabeller,
+	 * tabell[forste, midten] og tabell[midten+1, siste]
+	 * til en flettet sortert tabell
+	 *
+	 * @param data som skal sorteres
+	 * @param <T> tabellen som skal sorteres
+	 * @param int minsteverdi
+	 * @param int midtverdi
+	 * @param int maksverdi
+	 */
+
+	public static <T extends Comparable<T>> void flette(T[] data, int forste, int midten, int siste) {
+
+		int stor = siste - forste + 1;
+		@SuppressWarnings("unchecked")
+		T[] hjelpeTabell = (T[])(new Comparable[stor]);
+
+		// Start/slutt på venstre deltabell
+		int forste1 = forste;
+		int siste1 = midten;
+
+		// Start/slutt på høyre deltabell
+
+		int forste2 = midten+1;
+		int siste2 = siste;
+
+		// Så lenge deltabellene ikke er tomme,
+		// kopier det minste elementet til hjelpetabellen
+
+		int indeks = 0;
+
+		while ((forste1 <= siste1) && (forste2 <= siste2)) {
+			if (data[forste1].compareTo(data[forste2]) <= 0) {
+				hjelpeTabell[indeks] = data[forste1];
+				forste1++;
+			} else {
+				hjelpeTabell[indeks] = data[forste2];
+				forste2++;
+			}
+			indeks++;
+		}
+
+		// Kopiere resten av venstre del (kan være tom)
+		while (forste1 <= siste1) {
+			hjelpeTabell[indeks] = data[forste1];
+			forste1++;
+			indeks++;
+		}
+
+		// kopiere resten av høyre del (kan være tom)
+		while (forste2 <= siste2) {
+			hjelpeTabell[indeks] = data[forste2];
+			forste2++;
+			indeks++;
+		}
+
+		// Kopier resultatet tilbake til den originale tabellen
+		int h = 0;
+		for (indeks = forste; indeks <= siste; indeks++) {
+			data[indeks] = hjelpeTabell[h];
+			h++;
+		}
+
+	} // flette()
+
+	public static <T extends Comparable<T>> void radixSort(T[] data) {
+
+
+		String temp;
+		Integer nrObj;
+		int digit, nr;
+		KoeADT<Integer>[] digitKoer = new SirkulaerKoe[10];
+
+		for(int digitValue = 0; digitValue <= 9; digitValue++) {
+			digitKoer[digitValue] = new SirkulaerKoe<Integer>();
+		}
+
+		/**sort list*/
+		for(int pos = 0; pos < 2; pos++) {
+			for(int i = 0; i < data.length; i++) {
+				temp = String.valueOf(data[i]);
+				digit = Character.digit(temp.charAt(1-pos), 10);
+				digitKoer[digit].innKoe((Integer)data[i]);
+			}
+		}
+
+		/**gather numbers back into list*/
+		nr = 0;
+		for(int digitValue = 0; digitValue <= 9; digitValue++) {
+			while(!(digitKoer[digitValue].isEmpty())) {
+				nrObj = digitKoer[digitValue].utKoe();
+				data[nr] = nrObj.intValue();
+				nr++;
+			}
+		}
+
+		/**print out sorted list*/
+		for(int i = 0; i < data.length; i++) {
+			System.out.println(data[i]);
+		}
+
+
+	}
 }// class

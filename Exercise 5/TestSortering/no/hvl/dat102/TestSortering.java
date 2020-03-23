@@ -32,7 +32,7 @@ public class TestSortering {
 
 	@Test
 	public final void testutValgssortering() {
-		SorteringOgSoeking.utvalgsSortering(kopier);
+		SorteringOgSoeking.utvalgSort(kopier);
 		boolean ok = verifiser(kopier);
 		assertTrue(ok);
 	}
