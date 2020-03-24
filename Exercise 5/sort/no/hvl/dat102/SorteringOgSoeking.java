@@ -453,15 +453,16 @@ public class SorteringOgSoeking {
 				digit = Character.digit(temp.charAt(1-pos), 10);
 				digitKoer[digit].innKoe((Integer)data[i]);
 			}
-		}
 
-		/**gather numbers back into list*/
-		for(int digitValue = 0; digitValue <= 9; digitValue++) {
+
+			/**gather numbers back into list*/
 			nr = 0;
-			while(!(digitKoer[digitValue].isEmpty())) {
-				nrObj = digitKoer[digitValue].utKoe();
-				data[nr] = (T)nrObj;
-				nr++;
+			for(int digitValue = 0; digitValue <= 9; digitValue++) {
+				while(!(digitKoer[digitValue].isEmpty())) {
+					nrObj = digitKoer[digitValue].utKoe();
+					data[nr] = (T)nrObj;
+					nr++;
+				}
 			}
 		}
 
