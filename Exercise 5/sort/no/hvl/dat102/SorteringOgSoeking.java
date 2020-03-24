@@ -433,6 +433,7 @@ public class SorteringOgSoeking {
 
 	} // flette()
 
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> void radixSort(T[] data) {
 
 
@@ -455,20 +456,16 @@ public class SorteringOgSoeking {
 		}
 
 		/**gather numbers back into list*/
-		nr = 0;
 		for(int digitValue = 0; digitValue <= 9; digitValue++) {
+			nr = 0;
 			while(!(digitKoer[digitValue].isEmpty())) {
 				nrObj = digitKoer[digitValue].utKoe();
-				data[nr] = nrObj.intValue();
+				data[nr] = (T)nrObj;
 				nr++;
 			}
 		}
 
-		/**print out sorted list*/
-		for(int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
-		}
-
+		/**print out is done from another method skrivUtTallTabell*/
 
 	}
 }// class

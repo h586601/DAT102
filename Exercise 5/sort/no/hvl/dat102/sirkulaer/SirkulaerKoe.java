@@ -13,6 +13,7 @@ public class SirkulaerKoe<T> implements KoeADT<T> {
 		this(STDK);
 	}
 
+	@SuppressWarnings("unchecked")
 	public SirkulaerKoe(int startKapasitet) {
 		front = bak = antall = 0;
 		koe = ((T[]) (new Object[startKapasitet]));
@@ -32,6 +33,7 @@ public class SirkulaerKoe<T> implements KoeADT<T> {
 	}
 
 	public void utvid() {
+		@SuppressWarnings("unchecked")
 		T[] hjelpeTab = (T[])(new Object[koe.length*2]);
 
 		for(int pos = 0; pos < antall; pos++) {

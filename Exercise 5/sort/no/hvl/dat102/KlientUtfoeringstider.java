@@ -8,12 +8,12 @@ public class KlientUtfoeringstider {
 			Integer.valueOf(14),
 			Integer.valueOf(56),
 			Integer.valueOf(10),
-			Integer.valueOf(2),
+			Integer.valueOf(22),
 			Integer.valueOf(17),
-			Integer.valueOf(1),
-			Integer.valueOf(8),
-			Integer.valueOf(9),
-			Integer.valueOf(0),
+			Integer.valueOf(13),
+			Integer.valueOf(81),
+			Integer.valueOf(93),
+			Integer.valueOf(70),
 			Integer.valueOf(90)
 	};
 
@@ -82,6 +82,7 @@ public class KlientUtfoeringstider {
 		skrivUtTallTabell(kopi2);
 
 		// Radix-sort
+		System.out.println();
 		System.out.println("\nUtskrift etter at talltabellen er sortert med \"radix-sort\":");
 		Integer[] kopi6 = kopierOriginalTabell(tallTabell);
 		SorteringOgSoeking.radixSort(kopi6);

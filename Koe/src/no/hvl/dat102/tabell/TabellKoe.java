@@ -1,6 +1,6 @@
 package no.hvl.dat102.tabell;
 
-import no.hvl.dat102.adt.*;
+import no.hvl.dat102.adt.KoeADT;
 import no.hvl.dat102.exception.EmptyCollectionException;
 
 public class TabellKoe<T> implements KoeADT<T> {
@@ -18,6 +18,7 @@ public class TabellKoe<T> implements KoeADT<T> {
 	/******************************************************************
 	 * Oppretter en tom kø med kapasitet gitt ved parameter
 	 ******************************************************************/
+	@SuppressWarnings("unchecked")
 	public TabellKoe(int startKapasitet) {
 		bak = 0; // index for adding new elements and number of elements in the queue
 		koe = (T[]) (new Object[startKapasitet]);
@@ -37,7 +38,8 @@ public class TabellKoe<T> implements KoeADT<T> {
 	//Hjelpemetode
 	public void utvid() {
 
-		T[] hjelpeTab = (T[]) (new Object[2 * koe.length]); 
+		@SuppressWarnings("unchecked")
+		T[] hjelpeTab = (T[]) (new Object[2 * koe.length]);
 		for (int pos = 0; pos < koe.length; pos++) {
 			hjelpeTab[pos] = koe[pos];
 		}
@@ -66,7 +68,7 @@ public class TabellKoe<T> implements KoeADT<T> {
 		if(isEmpty()) {
 			throw new EmptyCollectionException("Køen");
 		}
-		
+
 		T firstElement = koe[0];
 		return firstElement;
 	}

@@ -14,6 +14,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		this(STDK);
 	}
 
+	@SuppressWarnings("unchecked")
 	public TabellOrdnetListe(int startKapasitet) {
 		bak = 0;
 		liste = (T[]) (new Comparable[startKapasitet]);
@@ -103,9 +104,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	public T fjern(T element) {
 
 		T resultat = null;
-		
+
 		int indeks = finn(element);
-		
+
 		if (indeks >= 0 && indeks < bak) {
 			resultat = liste[indeks];
 			for (int pos = indeks; pos < bak - 1; pos++) {
@@ -114,7 +115,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			liste[bak] = null;
 			bak--;
 		}
-		
+
 		return resultat;
 
 	}
@@ -133,6 +134,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		return resultat;
 	}
 
+	@Override
 	public String toString() {
 		String resultat = "";
 
@@ -143,6 +145,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	}
 
 	private void utvid() {
+		@SuppressWarnings("unchecked")
 		T[] hjelpeTabell = (T[]) (new Comparable[liste.length * 2]);
 
 		for (int i = 0; i < liste.length; i++) {
