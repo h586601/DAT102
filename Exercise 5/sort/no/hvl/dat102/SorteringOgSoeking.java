@@ -269,6 +269,8 @@ public class SorteringOgSoeking {
 	 * @param int maksverdi
 	 */
 
+
+
 	private static <T extends Comparable<T>> void kvikkSort(T[] data, int min, int maks) {
 		int posPartisjon;
 
@@ -285,7 +287,39 @@ public class SorteringOgSoeking {
 
 	} // kvikkSort()
 
+	private static final int MIN = 10;
 
+	public static<T extends Comparable<T>> void kvikkSortNy(T[] data, int min, int maks) {
+		kvikkSort2(data, min, maks);
+		sorteringVedInnsetting2(data, min, maks);
+	}
+
+	public static <T extends Comparable<T>> void kvikkSort2(T[] data, int min, int maks) {
+		int posPartisjon;
+		if (maks - min+1 > MIN) {
+			/*Lager partisjon*/
+			posPartisjon = finnPartisjon(data, min, maks);
+			/*Sorterer venstre side*/
+			kvikkSort(data, min, posPartisjon-1);
+			/*Sorterer høyre side*/
+			kvikkSort(data, posPartisjon+1, maks);
+		}
+	}
+
+	//Sortering ved innsetting av tabell[forste...siste]
+	public static <T extends Comparable<T>> void sorteringVedInnsetting2(T[] data, int forste, int siste) {
+
+		for(int indeks = forste + 1; indeks <= siste; indeks++) {
+			T nokkel = data[indeks];
+			int p = indeks;
+			//Forsyv større verdier mot høyre
+			while(p > 0 && data[p-1].compareTo(nokkel) > 0) {
+				data[p] = data[p-1];
+				p--;
+			}
+			data[p] = nokkel;
+		}
+	}
 
 	/**
 	 * Finn partisjon (brukes sammen med kvikkSort metoden)

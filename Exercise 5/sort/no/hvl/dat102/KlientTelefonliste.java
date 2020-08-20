@@ -193,9 +193,29 @@ public class KlientTelefonliste {
 			System.out.println(" er ikke med");
 		}
 
-		/* TODO
-		 *  Rekursiv binærsøk som returnerer indeks
-		 */
+
+		/*Rekursiv binærsøk som returnerer indeks*/
+		System.out.println("\nUtskrift fra rekursiv binaersoking som returnerer indeksen, -1 ved ikke-funn.");
+
+		int funnet2 = SorteringOgSoeking.binaerSoek3(vennerS, 0, vennerS.length - 1, kontakt1);
+
+		if (funnet2 > -1) {
+			System.out.print(kontakt1);
+			System.out.println(" er med");
+		} else {
+			System.out.print(kontakt1);
+			System.out.println(" er ikke med");
+		}
+
+		funnet2 = SorteringOgSoeking.binaerSoek3(vennerS, 0, vennerS.length - 1, kontakt2);
+
+		if (funnet2 > -1) {
+			System.out.print(kontakt2);
+			System.out.println(" er med");
+		} else {
+			System.out.print(kontakt2);
+			System.out.println(" er ikke med");
+		}
 
 		/* Sortering av usorterte tabeller , venner1, venner2, venner3 */
 
@@ -207,15 +227,13 @@ public class KlientTelefonliste {
 			System.out.println(venner1[indeks]);
 		}
 
-		/*
-		 * TODO Sortering ved innsetting
-		 * System.out.println("\nSortering ved innsetting");
-		 * SoekingOgSortering.sorteringVedInnsetting(venner2);
-		 *
-		 * for (int indeks = 0; indeks < venner2.length; indeks++) {
-		 * System.out.println(venner2[indeks]); }
-		 *
-		 */
+		/*Sortering ved innsetting*/
+		System.out.println("\nSortering ved innsetting");
+		SorteringOgSoeking.sorteringVedInnsetting(venner2);
+		for (int indeks = 0; indeks < venner2.length; indeks++) {
+			System.out.println(venner2[indeks]); }
+
+
 
 		/* Boblesortering */
 		System.out.println("\nBoblesortering");
@@ -234,20 +252,20 @@ public class KlientTelefonliste {
 			System.out.println(venner6[indeks]); }
 
 
-		/*
-		 * TODO Kvikksortering System.out.println("\nKvikksortering");
-		 * SoekingOgSortering.kvikkSort(venner4, 0, venner4.length - 1);
-		 *
-		 * for (int indeks = 0; indeks < venner4.length; indeks++) {
-		 * System.out.println(venner4[indeks]); }
-		 */
+		/*Kvikksortering*/
+		System.out.println("\nKvikksortering");
+		SorteringOgSoeking.kvikkSort(venner4);
 
-		/*
-		 * TODO Flettesortering System.out.println("\nFlettesortering");
-		 * SoekingOgSortering.fletteSort(venner5, 0, venner5.length - 1);
-		 *
-		 * for (int indeks = 0; indeks < venner5.length; indeks++) {
-		 * System.out.println(venner5[indeks]); }
-		 */
+		for (int indeks = 0; indeks < venner4.length; indeks++) {
+			System.out.println(venner4[indeks]); }
+
+
+		/*Flettesortering*/
+		System.out.println("\nFlettesortering");
+		SorteringOgSoeking.fletteSort(venner5, 0, venner5.length - 1);
+
+		for (int indeks = 0; indeks < venner5.length; indeks++) {
+			System.out.println(venner5[indeks]); }
+
 	}// main
 }// class
